@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>스킬 사전 | commeng.run</title>
+<style>
+:root{color-scheme:light;--ink:#20221e;--muted:#595e56;--line:#d0d4c9;--paper:#f8f8f4;--accent:#315a40;font:16px/1.65 system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);word-break:keep-all}main,header,footer{max-width:58rem;margin:auto;padding:0 clamp(1.1rem,4vw,3rem)}
+header,footer{display:flex;justify-content:space-between;align-items:center;min-height:4.5rem;font-size:.9rem}header{border-bottom:1px solid var(--line)}a{color:var(--accent);text-underline-offset:.25em}
+h1{font:650 clamp(2.8rem,8vw,5rem)/1.12 system-ui,sans-serif;letter-spacing:-.07em;margin:clamp(3rem,7vw,5rem) 0 .8rem}p{color:var(--muted);margin:0 0 2rem}h2{font-size:1.12rem;margin:2.4rem 0 .7rem}
+input{width:100%;background:white;border:1px solid #878e81;border-radius:.45rem;padding:1rem 1.2rem;font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.collection,.match{display:flex;gap:1.5rem;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:1.4rem .2rem;text-decoration:none;color:inherit}.collection:last-child,.match:last-child{border-bottom:1px solid var(--line)}.collection strong{font-size:1.4rem}.collection b{white-space:nowrap;color:var(--accent);font-size:.9rem}.collection small,.match small{display:block;color:var(--muted);font-size:.95rem}.match strong{overflow-wrap:anywhere;font-family:ui-monospace,monospace}.match:hover strong,.collection:hover strong{text-decoration:underline}
+footer{margin-top:4rem;color:var(--muted)}[hidden]{display:none!important}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+</style>
+<header><span>commeng.run</span><a href="https://github.com/dotoridot/skill-dictionary">GitHub ↗</a></header>
+<main><h1>스킬 사전</h1><p>하고 싶은 일이나 이름으로 에이전트 스킬을 찾아보세요.</p>
+<label class="sr" for="query">전체 사전 검색</label><input type="search" id="query" placeholder="스킬 이름, 목적 또는 검색어" autocomplete="off">
+<section id="collections"><h2>사전 목록</h2><!--COLLECTIONS--></section>
+<section id="results" hidden><h2 aria-live="polite" id="count"></h2><div id="matches"></div></section></main>
+<footer><span>commeng.run / 스킬 사전</span></footer>
+<script type="application/json" id="data">/*CATALOGS*/</script>
+<script>
+const catalogs = JSON.parse(document.querySelector('#data').textContent);
+const query = document.querySelector('#query');
+function search() {
+  const words = query.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+  const results = document.querySelector('#results');
+  document.querySelector('#collections').hidden = words.length > 0;
+  results.hidden = words.length === 0;
+  const matches = document.querySelector('#matches');
+  matches.replaceChildren();
+  if (!words.length) return;
+  for (const group of catalogs) {
+    for (const item of group.items) {
+      const haystack = [group.title, item.name, item.summary, item.category, ...(item.keywords || [])].join(' ').toLocaleLowerCase();
+      if (!words.every(word => haystack.includes(word))) continue;
+      const link = document.createElement('a');
+      link.className = 'match';
+      link.href = group.id + '/index.html#' + encodeURIComponent(item.id);
+      const text = document.createElement('span');
+      const name = document.createElement('strong');
+      name.textContent = item.name;
+      const summary = document.createElement('small');
+      summary.textContent = group.title + ' / ' + item.summary;
+      text.append(name, summary);
+      link.append(text);
+      matches.append(link);
+    }
+  }
+  document.querySelector('#count').textContent = matches.childElementCount ? '검색 결과 ' + matches.childElementCount + '개' : '검색 결과가 없습니다. 다른 이름이나 목적으로 찾아보세요.';
+}
+query.addEventListener('input', search);
+window.addEventListener('pageshow', search);
+</script>
+</html>

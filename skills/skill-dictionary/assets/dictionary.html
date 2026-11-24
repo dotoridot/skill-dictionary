@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="@@DESCRIPTION@@">
+<title>@@TITLE@@</title>
+<style>
+:root{color-scheme:light;--ink:#222923;--muted:#54625a;--line:#d6ddd3;--paper:#fafbf8;--green:#205c42;--soft:#e8f0e7;--sans:Inter,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 var(--sans);word-break:keep-all;overflow-wrap:anywhere}
+main{max-width:72rem;margin:auto;padding:3rem clamp(1rem,5vw,4rem) 6rem}
+h1,h2,h3,p,ol{margin:0}
+h1{font-size:clamp(2.2rem,5.5vw,4.25rem);line-height:1.12;letter-spacing:-.07em}
+h2{font-size:1.3rem;letter-spacing:-.035em}
+h3{font-size:.92rem}
+a{color:var(--green);text-underline-offset:.18em}
+button,input{font:inherit;color:inherit}
+button,summary{cursor:pointer}
+button{border:0;background:none}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+[hidden]{display:none!important}
+header{border-top:3px solid var(--ink);padding-top:1.5rem;margin-bottom:2rem}
+header p{color:var(--muted);max-width:48rem;margin-top:.8rem}
+nav{margin-bottom:1rem}
+label{display:block;font-weight:650;margin-bottom:.35rem}
+input{width:100%;padding:.75rem 1rem;border:1px solid #a6b2a7;border-radius:6px;background:#fff}
+.filters{display:flex;gap:.45rem;flex-wrap:wrap;margin:1rem 0 1.5rem}
+.filters button,.related a,.small{border:1px solid var(--line);border-radius:5px;background:#fff;padding:.35rem .7rem;text-decoration:none}
+.filters [aria-pressed=true]{background:var(--green);border-color:var(--green);color:white}
+.scenario{border-top:1px solid var(--line);padding:.6rem 0}
+.scenario summary{font-weight:650}
+.scenario ol{padding-left:1.5rem}
+.scenario li{padding:.4rem 0}
+.scenario p,.hint,.status{font-size:.85rem;color:var(--muted)}
+.scenarios{margin:1.4rem 0}
+.results-head{border-bottom:2px solid var(--ink);display:flex;align-items:baseline;justify-content:space-between;margin-top:1.6rem;padding-bottom:.5rem}
+#rows{list-style:none;padding:0;margin:0}
+.row{border-bottom:1px solid var(--line)}
+.row-trigger{display:grid;grid-template-columns:minmax(10rem,.7fr) minmax(0,1.3fr) auto;align-items:center;gap:1rem;text-align:left;width:100%;padding:.9rem .5rem}
+.row-trigger code,#detail-title,.related a,.scenario a[data-item]{font-family:var(--mono);overflow-wrap:anywhere}
+.row-trigger code{color:var(--green);font-size:.98rem;font-weight:650}
+.row-trigger small{color:var(--muted)}
+.row-trigger:hover,.row-trigger[aria-expanded=true]{background:var(--soft)}
+#detail{padding:1.25rem;background:white;border:1px solid var(--line);border-radius:8px;min-width:0}
+#detail section,#detail details{margin-top:1.1rem}
+#detail p,#detail pre,.scenario li{white-space:pre-wrap}
+#detail pre{font:inherit;margin:.35rem 0;background:var(--paper);border-left:3px solid var(--green);padding:.8rem;overflow-wrap:anywhere}
+.detail-head{display:flex;align-items:start;justify-content:space-between;gap:.5rem}
+.small{font-size:.85rem;white-space:nowrap}
+#detail-title{font-size:clamp(1.15rem,3vw,1.65rem);letter-spacing:-.04em}
+.related{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.45rem}
+.copy-line{display:flex;gap:.7rem;align-items:center}
+#empty{padding:1.25rem 0}
+@media(min-width:52rem){
+ .layout.is-open{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:1.5rem}
+ .layout.is-open .row-trigger{grid-template-columns:minmax(0,1fr) auto;gap:.25rem}
+ .layout.is-open .row-trigger span{grid-column:1/-1;grid-row:2}
+ #detail{position:sticky;top:1rem;max-height:calc(100vh - 2rem);overflow:auto}
+}
+@media(max-width:51.99rem){
+ main{padding-top:1.4rem}
+ .row-trigger{grid-template-columns:minmax(0,1fr) auto;gap:.2rem .5rem}
+ .row-trigger span{grid-column:1/-1;grid-row:2}
+ #detail{margin:0 0 .85rem;border-radius:0 0 6px 6px}
+}
+</style>
+</head>
+<body>
+<main>
+<nav id="home-nav" aria-label="사전 탐색" hidden><a href="../">사전 목록</a></nav>
+<header><h1>@@TITLE@@</h1><p>@@DESCRIPTION@@</p></header>
+<label for="query">스킬 검색</label>
+<input id="query" type="search" placeholder="스킬 이름, 작업, 상황으로 검색" autocomplete="off">
+<div class="filters" id="filters" role="group" aria-label="목적별 필터"></div>
+<section class="scenarios" id="scenarios" aria-label="사용 시나리오" hidden></section>
+<div class="results-head"><h2>스킬 목록</h2><span class="hint" id="count" aria-live="polite"></span></div>
+<div id="layout" class="layout">
+<ul id="rows"></ul><p id="empty" hidden>검색 결과가 없습니다. <button type="button" class="small" id="reset">전체 보기</button></p>
+<article id="detail" aria-labelledby="detail-title" hidden></article>
+</div>
+<noscript>스킬을 검색하고 읽으려면 JavaScript를 켜 주세요.</noscript>
+</main>
+<script type="application/json" id="catalog">@@DATA@@</script>
+<script>
+"use strict";
+const byId = id => document.getElementById(id);
+const data = JSON.parse(byId("catalog").textContent);
+const items = new Map(data.items.map(item => [item.id, item]));
+const rows = new Map();
+const narrow = matchMedia("(max-width:51.99rem)");
+const query = byId("query");
+const detail = byId("detail");
+let category = null;
+let selected = null;
+function element(tag, value, parent, className) {
+  const el = document.createElement(tag);
+  if (value != null) el.textContent = value;
+  if (className) el.className = className;
+  if (parent) parent.append(el);
+  return el;
+}
+function button(text, parent, action, style) {
+  const btn = element("button", text, parent, style);
+  btn.type = "button";
+  btn.addEventListener("click", action);
+  return btn;
+}
+function source(label, url, parent) {
+  const link = element("a", label, parent);
+  link.href = url;
+}
+function itemLink(id, parent) {
+  const link = element("a", items.get(id).name, parent);
+  link.href = "#" + encodeURIComponent(id);
+  link.dataset.item = id;
+  link.addEventListener("click", event => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    openItem(id, true, true);
+  });
+}
+function normalize(value) {
+  return value.normalize("NFKC").toLowerCase().replace(/[$/_-]/g, " ");
+}
+function updateFragment(id) {
+  const fragment = id ? "#" + encodeURIComponent(id) : "";
+  if (location.hash === fragment) return;
+  const url = new URL(location.href);
+  url.hash = fragment;
+  try { history.pushState(null, "", url.href); }
+  catch { location.hash = fragment; }
+}
+function closeItem(focus, update) {
+  const previous = rows.get(selected);
+  if (previous) previous.trigger.setAttribute("aria-expanded", "false");
+  selected = null;
+  detail.hidden = true;
+  byId("layout").classList.remove("is-open");
+  if (update) updateFragment(null);
+  if (focus && previous) previous.trigger.focus();
+}
+function filter() {
+  const terms = normalize(query.value).trim().split(/\s+/).filter(Boolean);
+  let count = 0;
+  for (const row of rows.values()) {
+    row.li.hidden = Boolean(category && row.item.category !== category) || !terms.every(term => row.index.includes(term));
+    if (!row.li.hidden) count++;
+  }
+  for (const chip of byId("filters").children) chip.setAttribute("aria-pressed", String((chip.dataset.category ?? null) === category));
+  byId("count").textContent = count + "개";
+  byId("empty").hidden = count !== 0;
+  if (selected && rows.get(selected).li.hidden) closeItem(false, true);
+}
+function placeDetail() {
+  if (!selected) return;
+  const destination = narrow.matches ? rows.get(selected).li : byId("layout");
+  if (detail.parentElement !== destination) destination.append(detail);
+}
+async function copyExample(text, status, trigger) {
+  try {
+    if (!navigator.clipboard) throw new Error();
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const box = element("textarea", text, document.body);
+    box.style.cssText = "position:fixed;left:0;top:0;opacity:0";
+    box.select();
+    let copied = false;
+    try { copied = document.execCommand("copy"); } catch { copied = false; }
+    finally { box.remove(); trigger.focus(); }
+    if (!copied) { status.textContent = "예시를 선택해 복사해 주세요."; return; }
+  }
+  status.textContent = "복사했습니다.";
+}
+function openItem(id, focus, update) {
+  const row = rows.get(id);
+  if (!row) return;
+  if (row.li.hidden) { category = null; query.value = ""; filter(); }
+  if (selected) rows.get(selected).trigger.setAttribute("aria-expanded", "false");
+  selected = id;
+  const item = row.item;
+  row.trigger.setAttribute("aria-expanded", "true");
+  byId("layout").classList.add("is-open");
+  detail.replaceChildren();
+  const head = element("div", null, detail, "detail-head");
+  const title = element("h2", item.name, head);
+  title.id = "detail-title";
+  title.tabIndex = -1;
+  button("닫기", head, () => closeItem(true, true), "small");
+  element("p", item.summary, detail);
+  function section(label, value) {
+    if (!value) return;
+    const section = element("section", null, detail);
+    element("h3", label, section);
+    element("p", value, section);
+  }
+  section("언제 쓰나요?", item.when);
+  if (item.example) {
+    const example = element("section", null, detail);
+    element("h3", item.exampleSource ? "저자의 사용 예시" : "이렇게 요청해 보세요", example);
+    element("pre", item.example, example);
+    const controls = element("div", null, example, "copy-line");
+    const copy = button("예시 복사", controls, () => copyExample(item.example, status, copy), "small");
+    const status = element("span", "", controls, "status");
+    status.setAttribute("role", "status");
+    if (item.exampleSource) source("사례 출처", item.exampleSource, example);
+    else element("span", "사전에서 작성한 예시", example, "hint");
+  }
+  section("무엇을 받나요?", item.result);
+  if (item.comparison || item.related?.length) {
+    const sec = element("section", null, detail);
+    element("h3", "어느 쪽을 쓸까?", sec);
+    if (item.comparison) element("p", item.comparison, sec);
+    const links = element("div", null, sec, "related");
+    for (const id of item.related || []) itemLink(id, links);
+  }
+  if (item.avoid || item.source) {
+    const more = element("details", null, detail);
+    element("summary", "세부 조건과 원문", more);
+    if (item.avoid) element("p", item.avoid, more);
+    if (item.source) source("스킬 원문 보기", item.source, more);
+  }
+  detail.hidden = false;
+  placeDetail();
+  if (update) updateFragment(id);
+  if (focus) title.focus();
+}
+function readFragment() {
+  let id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch { id = null; }
+  if (items.has(id)) openItem(id, true, false);
+  else closeItem(Boolean(selected), false);
+}
+function resetFilters() { category = null; query.value = ""; filter(); }
+for (const cat of [null, ...new Set(data.items.map(item => item.category))]) {
+  const chip = button(cat || "전체", byId("filters"), () => { category = cat; filter(); });
+  if (cat) chip.dataset.category = cat;
+}
+for (const item of data.items) {
+  const li = element("li", null, byId("rows"), "row");
+  const trigger = button(null, li, () => selected === item.id ? closeItem(true, true) : openItem(item.id, true, true), "row-trigger");
+  trigger.setAttribute("aria-expanded", "false");
+  trigger.setAttribute("aria-controls", "detail");
+  element("code", item.name, trigger);
+  element("span", item.summary, trigger);
+  element("small", item.category, trigger);
+  const index = normalize([item.name, item.summary, item.category, item.when, ...(item.keywords || [])].join(" "));
+  rows.set(item.id, { li, trigger, index, item });
+}
+for (const scenario of data.scenarios || []) {
+  const sec = byId("scenarios");
+  if (sec.hidden) { sec.hidden = false; element("h2", "사용 시나리오", sec); }
+  const disclosure = element("details", null, sec, "scenario");
+  element("summary", scenario.title, disclosure);
+  if (scenario.source) source("실제 사례 출처", scenario.source, disclosure);
+  else element("p", "사전에서 구성한 흐름", disclosure);
+  const steps = element("ol", null, disclosure);
+  for (const step of scenario.steps) {
+    const li = element("li", null, steps);
+    itemLink(step.id, li);
+    element("span", " — " + step.note, li);
+  }
+}
+if (data.home === "../" && location.protocol !== "file:") byId("home-nav").hidden = false;
+query.addEventListener("input", filter);
+byId("reset").addEventListener("click", () => { resetFilters(); query.focus(); });
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && selected) { event.preventDefault(); closeItem(true, true); }
+});
+narrow.addEventListener("change", placeDetail);
+window.addEventListener("hashchange", readFragment);
+filter();
+readFragment();
+</script>
+</body>
+</html>
