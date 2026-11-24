@@ -21,7 +21,7 @@ h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.2; letter-spacing: -.02
 h2 { font-size: 1.25rem; line-height: 1.4; font-weight: 600; }
 h3 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
 a { color: var(--ink); text-underline-offset: .2em; }
-button { color: var(--ink); cursor: pointer; }
+button { border: 0; color: var(--ink); cursor: pointer; }
 input[type="search"] {
   width: 100%;
   min-height: 3rem;
@@ -41,7 +41,6 @@ button:disabled { cursor: default; opacity: .55; }
   align-items: center;
   gap: .5rem;
   min-height: 2.5rem;
-  border: 1px solid var(--input-border);
   border-radius: var(--radius-button);
   padding: .4rem .7rem;
   background: var(--control-bg);
@@ -55,10 +54,10 @@ button:disabled { cursor: default; opacity: .55; }
   border-radius: 50%;
   background: linear-gradient(to right, currentColor 50%, transparent 50%);
 }
-[data-theme-toggle][aria-pressed="true"] { background: var(--accent-fill); color: var(--on-accent); border-color: var(--accent-fill); }
+[data-theme-toggle][aria-pressed="true"] { background: var(--accent-fill); color: var(--on-accent); }
 @media (hover: hover) {
-  [data-theme-toggle]:hover { background: var(--control-hover); border-color: var(--secondary); text-decoration: underline; }
-  [data-theme-toggle][aria-pressed="true"]:hover { background: var(--accent-fill); border-color: var(--accent-fill); }
+  [data-theme-toggle]:hover { background: var(--control-hover); text-decoration: underline; }
+  [data-theme-toggle][aria-pressed="true"]:hover { background: var(--accent-fill); }
 }
 
 main, header, footer { max-width: 60rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 3rem); }

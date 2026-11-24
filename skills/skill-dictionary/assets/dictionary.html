@@ -22,7 +22,7 @@ h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.2; letter-spacing: -.02
 h2 { font-size: 1.25rem; line-height: 1.4; font-weight: 600; }
 h3 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
 a { color: var(--ink); text-underline-offset: .2em; }
-button { color: var(--ink); cursor: pointer; }
+button { border: 0; color: var(--ink); cursor: pointer; }
 input[type="search"] {
   width: 100%;
   min-height: 3rem;
@@ -42,7 +42,6 @@ button:disabled { cursor: default; opacity: .55; }
   align-items: center;
   gap: .5rem;
   min-height: 2.5rem;
-  border: 1px solid var(--input-border);
   border-radius: var(--radius-button);
   padding: .4rem .7rem;
   background: var(--control-bg);
@@ -56,10 +55,10 @@ button:disabled { cursor: default; opacity: .55; }
   border-radius: 50%;
   background: linear-gradient(to right, currentColor 50%, transparent 50%);
 }
-[data-theme-toggle][aria-pressed="true"] { background: var(--accent-fill); color: var(--on-accent); border-color: var(--accent-fill); }
+[data-theme-toggle][aria-pressed="true"] { background: var(--accent-fill); color: var(--on-accent); }
 @media (hover: hover) {
-  [data-theme-toggle]:hover { background: var(--control-hover); border-color: var(--secondary); text-decoration: underline; }
-  [data-theme-toggle][aria-pressed="true"]:hover { background: var(--accent-fill); border-color: var(--accent-fill); }
+  [data-theme-toggle]:hover { background: var(--control-hover); text-decoration: underline; }
+  [data-theme-toggle][aria-pressed="true"]:hover { background: var(--accent-fill); }
 }
 
 main { max-width: 72rem; margin-inline: auto; padding: 0 clamp(1rem, 5vw, 4rem) 5rem; }
@@ -76,15 +75,14 @@ button, summary { cursor: pointer; }
   display: inline-flex;
   align-items: center;
   min-height: 2.5rem;
-  border: 1px solid var(--input-border);
   border-radius: var(--radius-button);
-  background: var(--paper);
+  background: var(--control-bg);
   color: var(--ink);
   padding: .35rem .75rem;
   font: 500 .875rem/1.5 var(--font-heading);
   text-decoration: none;
 }
-.filters [aria-pressed="true"] { background: var(--accent-fill); color: var(--on-accent); border-color: var(--accent-fill); font-weight: 650; }
+.filters [aria-pressed="true"] { background: var(--accent-fill); color: var(--on-accent); font-weight: 650; }
 .scenarios { margin: 1.75rem 0; }
 .scenarios h2 { margin-bottom: .5rem; }
 .scenario { border-top: 1px solid var(--rule); }
@@ -125,8 +123,7 @@ button, summary { cursor: pointer; }
 #empty { padding: 1.25rem 0; }
 @media (hover: hover) {
   .filters button:hover, .related a:hover, .small:hover, .row-trigger:hover, .scenario summary:hover { background: var(--control-hover); }
-  .filters button:hover, .related a:hover, .small:hover { border-color: var(--secondary); }
-  .filters [aria-pressed="true"]:hover { background: var(--accent-fill); border-color: var(--accent-fill); }
+  .filters [aria-pressed="true"]:hover { background: var(--accent-fill); }
   .related a:hover, .small:hover, .filters button:hover { text-decoration: underline; }
 }
 @media (min-width: 52rem) {
