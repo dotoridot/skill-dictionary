@@ -90,8 +90,8 @@ button, summary { cursor: pointer; }
 #detail { min-width: 0; padding: clamp(1rem, 2.6vw, 2.1rem); border-radius: 1rem; background: var(--paper); box-shadow: 0 0 0 1px var(--rule), 0 8px 28px rgb(0 0 0 / .04); }
 .detail-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: .55rem 1rem; }
 .detail-head code { color: var(--secondary); font: .8125rem/1.5 var(--font-mono); align-self: center; }
-.detail-head .small { min-height: 2.25rem; }
-#detail-title { grid-column: 1/-1; font: 650 clamp(1.35rem, 2.6vw, 1.85rem)/1.35 var(--font-heading); letter-spacing: -.025em; }
+.detail-head .small { grid-column: 2; grid-row: 1; min-height: 2.25rem; }
+#detail-title { grid-column: 1/-1; grid-row: 2; font: 650 clamp(1.35rem, 2.6vw, 1.85rem)/1.35 var(--font-heading); letter-spacing: -.025em; }
 .detail-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr)); gap: 1.25rem; margin-top: 1.25rem; padding-block: 1.15rem; border-block: 1px solid var(--rule); }
 #detail h3 { font-size: .95rem; margin-bottom: .4rem; }
 #detail p, #detail pre, .scenario li { max-inline-size: 72ch; white-space: pre-wrap; }
@@ -309,10 +309,10 @@ function openItem(id, focus, update, trigger) {
   detail.replaceChildren();
   const head = element("div", null, detail, "detail-head");
   element("code", item.name, head);
-  button("닫기", head, () => closeItem(true, true), "small");
   const title = element("h2", item.summary, head);
   title.id = "detail-title";
   title.tabIndex = -1;
+  button("닫기", head, () => closeItem(true, true), "small");
   const facts = (item.when || item.result) && element("div", null, detail, "detail-facts");
   function section(label, value, english) {
     if (!value) return;
@@ -343,6 +343,7 @@ function openItem(id, focus, update, trigger) {
       element("summary", "복사할 전체 프롬프트", preview);
       element("p", "원문 링크를 열 수 있는 에이전트에 붙여넣으세요.", preview, "hint");
       element("pre", prompt, preview);
+      if (!item.exampleSource) element("p", "사전에서 작성한 예시", preview, "hint");
     }
     if (item.exampleSource) source("사례 출처", item.exampleSource, example);
   }
