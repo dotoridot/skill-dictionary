@@ -104,3 +104,21 @@
   letter-spacing: normal;
   vertical-align: baseline;
 }
+
+[data-theme-toggle] {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  padding: 0;
+  border-radius: var(--radius-button);
+  color: var(--ink);
+  background: var(--control-bg);
+}
+[data-theme-toggle][aria-pressed="true"] { color: var(--on-accent); background: var(--accent-fill); }
+.theme-sun, [data-theme="dark"] .theme-moon { display: none; }
+[data-theme="dark"] .theme-sun { display: inline; }
+@media (hover: hover) {
+  [data-theme-toggle]:hover { background: var(--control-hover); }
+  [data-theme-toggle][aria-pressed="true"]:hover { background: var(--accent-fill); }
+}

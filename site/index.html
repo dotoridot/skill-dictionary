@@ -36,29 +36,6 @@ input::placeholder { color: var(--secondary); opacity: 1; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 button:disabled { cursor: default; opacity: .55; }
 [hidden] { display: none !important; }
-[data-theme-toggle] {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  min-height: 2.5rem;
-  border-radius: var(--radius-button);
-  padding: .4rem .7rem;
-  background: var(--control-bg);
-  font: 550 .8125rem/1.5 var(--font-heading);
-}
-[data-theme-toggle]::before {
-  content: "";
-  width: .85rem;
-  height: .85rem;
-  border: 1.5px solid currentColor;
-  border-radius: 50%;
-  background: linear-gradient(to right, currentColor 50%, transparent 50%);
-}
-[data-theme-toggle][aria-pressed="true"] { background: var(--accent-fill); color: var(--on-accent); }
-@media (hover: hover) {
-  [data-theme-toggle]:hover { background: var(--control-hover); text-decoration: underline; }
-  [data-theme-toggle][aria-pressed="true"]:hover { background: var(--accent-fill); }
-}
 
 main, header, footer { max-width: 60rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 3rem); }
 header, footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; min-height: 4.5rem; }
@@ -112,7 +89,12 @@ footer { margin-top: 3rem; color: var(--secondary); font-size: .8125rem; }
 </style>
 </head>
 <body>
-<header><span>commeng.run</span><nav aria-label="사이트 메뉴"><a href="https://github.com/dotoridot/skill-dictionary">GitHub 저장소</a><button type="button" data-theme-toggle aria-label="다크 모드" aria-pressed="false">다크 모드</button></nav></header>
+<header><span>commeng.run</span><nav aria-label="사이트 메뉴"><a href="https://github.com/dotoridot/skill-dictionary">GitHub 저장소</a><button type="button" data-theme-toggle aria-label="다크 모드" aria-pressed="false" title="테마 전환">
+  <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path class="theme-moon" d="M20.8 13.1A8.8 8.8 0 0 1 10.9 3.2a8.8 8.8 0 1 0 9.9 9.9Z"/>
+    <g class="theme-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></g>
+  </svg>
+</button></nav></header>
 <main><h1>스킬 사전 <span class="heading-en" lang="en" aria-hidden="true">skills-dictionary</span></h1><p>하고 싶은 일이나 이름으로 에이전트 스킬을 찾아보세요.</p>
 <label for="query">전체 사전 검색 <span class="heading-en" lang="en" aria-hidden="true">search all skills</span></label><div class="search-field">
   <input type="search" id="query" name="q" placeholder="예: 리뷰, 원인 조사, grilling" autocomplete="off">
