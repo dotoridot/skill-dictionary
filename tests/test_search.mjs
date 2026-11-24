@@ -24,6 +24,7 @@ test("같은 작업의 다른 표현으로도 관련 스킬을 찾는다", () =>
 
 test("이름과 요약을 우선하고 빈 검색은 원래 순서를 유지한다", () => {
   assert.equal(rank(items, "$Code_Review")[0], "code-review");
+  assert.equal(rank(items, "코드 검토")[0], "code-review");
   const hits = rank(items, "계획");
   assert.ok(hits.indexOf("grill-me") < hits.indexOf("figure-it-out"));
   assert.deepEqual(rank(items, ""), items.map(item => item.id));

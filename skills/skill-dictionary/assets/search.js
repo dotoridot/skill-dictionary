@@ -17,5 +17,9 @@ function searchScore(item, query, collection = "") {
     else if (context.includes(term)) score += 1;
     else return -1;
   }
+  if (query.includes(" ")) {
+    if (name.includes(query) || summary.includes(query)) score += 4;
+    else if (keywords.includes(query)) score += 3;
+  }
   return score;
 }
