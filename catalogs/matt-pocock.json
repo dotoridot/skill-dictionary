@@ -274,7 +274,10 @@
       "result": "저장소 규칙과 기능 명세를 각각 대조한 리뷰 결과.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/code-review/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "리뷰",
+        "코드 리뷰"
+      ]
     },
     {
       "id": "pr",

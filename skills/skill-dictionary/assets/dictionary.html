@@ -170,6 +170,7 @@ const query = byId("query");
 const detail = byId("detail");
 let category = null;
 let selected = null;
+let opener = null;
 function element(tag, value, parent, className) {
   const el = document.createElement(tag);
   if (value != null) el.textContent = value;
@@ -194,28 +195,42 @@ function itemLink(id, parent) {
   link.addEventListener("click", event => {
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    openItem(id, true, true);
+    openItem(id, true, true, link);
   });
 }
 function normalize(value) {
   return value.normalize("NFKC").toLowerCase().replace(/[$/_-]/g, " ");
 }
-function updateFragment(id) {
+function saveView(id, push) {
+  const state = { query: query.value, category, scenario: scenarioLinks.indexOf(opener) };
   const fragment = id ? "#" + encodeURIComponent(id) : "";
-  if (location.hash === fragment) return;
-  const url = new URL(location.href);
-  url.hash = fragment;
-  try { history.pushState(null, "", url.href); }
-  catch { location.hash = fragment; }
+  if (push && location.hash !== fragment) {
+    try {
+      const url = new URL(location.href);
+      url.hash = fragment;
+      history.pushState(state, "", url.href);
+      return;
+    } catch {
+      location.hash = fragment;
+    }
+  }
+  try { history.replaceState(state, ""); } catch { /* Some standalone file readers only support fragments. */ }
 }
 function closeItem(focus, update) {
   const previous = rows.get(selected);
   if (previous) previous.trigger.setAttribute("aria-expanded", "false");
+  const returnTarget = opener;
+  opener = null;
   selected = null;
   detail.hidden = true;
   byId("layout").classList.remove("is-open");
-  if (update) updateFragment(null);
-  if (focus && previous) previous.trigger.focus();
+  if (update) saveView(null, true);
+  if (focus && previous) {
+    const target = returnTarget?.isConnected ? returnTarget : previous.trigger;
+    const scenario = target.closest(".scenario");
+    if (scenario) scenario.open = true;
+    (target.closest("[hidden]") ? query : target).focus();
+  }
 }
 function filter() {
   const terms = normalize(query.value).trim().split(/\s+/).filter(Boolean);
@@ -227,7 +242,11 @@ function filter() {
   for (const chip of byId("filters").children) chip.setAttribute("aria-pressed", String((chip.dataset.category ?? null) === category));
   byId("count").textContent = count + "개";
   byId("empty").hidden = count !== 0;
+}
+function filterFromInput() {
+  filter();
   if (selected && rows.get(selected).li.hidden) closeItem(false, true);
+  else saveView(selected, false);
 }
 function placeDetail() {
   if (!selected) return;
@@ -250,11 +269,12 @@ async function copyExample(text, status, trigger) {
   status.dataset.state = "success";
   status.textContent = "복사했습니다.";
 }
-function openItem(id, focus, update) {
+function openItem(id, focus, update, trigger) {
   const row = rows.get(id);
   if (!row) return;
   if (row.li.hidden) { category = null; query.value = ""; filter(); }
   if (selected) rows.get(selected).trigger.setAttribute("aria-expanded", "false");
+  opener = scenarioLinks.includes(trigger) ? trigger : row.trigger;
   selected = id;
   const item = row.item;
   row.trigger.setAttribute("aria-expanded", "true");
@@ -300,18 +320,23 @@ function openItem(id, focus, update) {
   }
   detail.hidden = false;
   placeDetail();
-  if (update) updateFragment(id);
+  if (update) saveView(id, true);
   if (focus) title.focus();
 }
 function readFragment() {
   let id;
   try { id = decodeURIComponent(location.hash.slice(1)); } catch { id = null; }
-  if (items.has(id)) openItem(id, true, false);
-  else closeItem(Boolean(selected), false);
+  const state = history.state;
+  query.value = state?.query ?? "";
+  category = state?.category ?? null;
+  filter();
+  if (items.has(id)) {
+    if (selected !== id) openItem(id, true, false, scenarioLinks[state?.scenario]);
+  } else if (selected) closeItem(true, false);
 }
-function resetFilters() { category = null; query.value = ""; filter(); }
+function resetFilters() { category = null; query.value = ""; filterFromInput(); }
 for (const cat of [null, ...new Set(data.items.map(item => item.category))]) {
-  const chip = button(cat || "전체", byId("filters"), () => { category = cat; filter(); });
+  const chip = button(cat || "전체", byId("filters"), () => { category = cat; filterFromInput(); });
   if (cat) chip.dataset.category = cat;
 }
 for (const item of data.items) {
@@ -340,14 +365,15 @@ for (const scenario of data.scenarios || []) {
   }
 }
 if (data.home === "../" && location.protocol !== "file:") byId("home-nav").hidden = false;
-query.addEventListener("input", filter);
+const scenarioLinks = [...byId("scenarios").querySelectorAll("a[data-item]")];
+query.addEventListener("input", filterFromInput);
 byId("reset").addEventListener("click", () => { resetFilters(); query.focus(); });
 document.addEventListener("keydown", event => {
+  if (event.defaultPrevented || event.isComposing || event.keyCode === 229 || event.target === query) return;
   if (event.key === "Escape" && selected) { event.preventDefault(); closeItem(true, true); }
 });
 narrow.addEventListener("change", placeDetail);
 window.addEventListener("hashchange", readFragment);
-filter();
 readFragment();
 </script>
 </body>
