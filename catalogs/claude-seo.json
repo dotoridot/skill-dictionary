@@ -1,0 +1,63 @@
+{
+  "id": "claude-seo",
+  "title": "Claude SEO",
+  "home": "../",
+  "field": "마케팅과 검색 최적화",
+  "revision": "468ed5b0d9e3249394783710e54abb02837e326b",
+  "scope": "skills/ 내 페이지와 콘텐츠 관련 대표 3개.",
+  "description": "콘텐츠 기획, 페이지 진단, 사이트맵 점검에 쓰는 대표 스킬 3개를 골랐습니다.",
+  "items": [
+    {
+      "id": "seo-content-brief",
+      "name": "seo-content-brief",
+      "summary": "검색 의도에 맞춰 글의 개요 작성하기",
+      "category": "콘텐츠 기획",
+      "when": "새 페이지를 기획하거나 기존 글에서 보강할 주제를 고를 때.",
+      "example": "홈카페 원두 보관법을 다룰 글의 개요를 짜 줘. 기존 상위 글에서 빠진 질문도 찾아줘.",
+      "result": "목표 키워드, 섹션별 다룰 내용과 분량을 담은 집필 안내서.",
+      "keywords": [
+        "콘텐츠 기획",
+        "글쓰기",
+        "목차",
+        "키워드",
+        "마케팅",
+        "검색 의도"
+      ],
+      "source": "https://github.com/AgriciDaniel/claude-seo/blob/468ed5b0d9e3249394783710e54abb02837e326b/skills/seo-content-brief/SKILL.md"
+    },
+    {
+      "id": "seo-page",
+      "name": "seo-page",
+      "summary": "한 페이지의 검색 노출 요소 점검하기",
+      "category": "페이지 진단",
+      "when": "특정 페이지의 제목, 메타데이터, 이미지와 구조화 데이터를 확인할 때.",
+      "example": "이 상품 소개 페이지를 검색 노출 관점에서 점검하고 가장 먼저 고칠 부분을 알려줘.",
+      "result": "페이지에서 확인된 문제, 근거와 수정 우선순위.",
+      "keywords": [
+        "검색 최적화",
+        "SEO 진단",
+        "마케팅",
+        "메타 태그",
+        "검색 노출"
+      ],
+      "source": "https://github.com/AgriciDaniel/claude-seo/blob/468ed5b0d9e3249394783710e54abb02837e326b/skills/seo-page/SKILL.md"
+    },
+    {
+      "id": "seo-sitemap",
+      "name": "seo-sitemap",
+      "summary": "XML 사이트맵 검증하거나 생성하기",
+      "category": "사이트 구조",
+      "when": "검색 엔진에 제출할 URL 목록의 형식과 구성을 점검할 때.",
+      "example": "이 사이트의 XML 사이트맵을 확인하고 잘못된 URL이나 구조가 있는지 찾아줘.",
+      "result": "사이트맵 검사 결과 또는 사이트에 맞춘 새 XML 사이트맵.",
+      "keywords": [
+        "사이트맵",
+        "크롤링",
+        "색인",
+        "검색 등록"
+      ],
+      "source": "https://github.com/AgriciDaniel/claude-seo/blob/468ed5b0d9e3249394783710e54abb02837e326b/skills/seo-sitemap/SKILL.md"
+    }
+  ],
+  "scenarios": []
+}

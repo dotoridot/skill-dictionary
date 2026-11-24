@@ -1,0 +1,37 @@
+{
+  "id": "last30days",
+  "home": "../",
+  "title": "Last 30 Days",
+  "field": "데이터와 리서치",
+  "description": "최근 한 달 사이 커뮤니티에서 오간 질문과 사용 경험을 원문 링크와 함께 조사합니다.",
+  "revision": "7c15d0245d13983e015926473cc3b295f8c05f28",
+  "scope": "고정 리비전의 skills/last30days/SKILL.md 한 개를 수록했습니다. 비교와 주제 발굴은 같은 스킬의 조사 방식입니다.",
+  "items": [
+    {
+      "id": "last30days",
+      "name": "last30days",
+      "category": "최근 동향 조사",
+      "summary": "최근 30일간 공개 커뮤니티와 웹에서 특정 주제를 조사해 반복되는 의견과 출처를 정리합니다.",
+      "when": "출시 직후의 제품 반응이나 도구 비교가 궁금하고, 인용한 게시물을 직접 살펴보고 싶을 때",
+      "example": "최근 30일 동안 전자책 단말기를 처음 산 사람들이 화면 크기에 관해 남긴 의견을 조사해줘. 비슷한 의견을 묶고 실제 게시물 링크를 붙여줘.",
+      "result": "설정된 출처에서 확인한 게시물과 링크, 주제별 경향을 담은 조사 결과. 참여자 의견을 찾기 어려웠다면 그 한계를 표시합니다.",
+      "keywords": [
+        "트렌드",
+        "동향",
+        "조사",
+        "한달",
+        "Reddit",
+        "유튜브",
+        "커뮤니티",
+        "반응",
+        "리서치",
+        "비교",
+        "시장조사"
+      ],
+      "related": [],
+      "source": "https://github.com/mvanhorn/last30days-skill/blob/7c15d0245d13983e015926473cc3b295f8c05f28/skills/last30days/SKILL.md",
+      "sourceSha256": "3d7e9d085ad8a6719001b0e053ba31ef1bd6275c55cb3333a3dbd91955adce11"
+    }
+  ],
+  "scenarios": []
+}

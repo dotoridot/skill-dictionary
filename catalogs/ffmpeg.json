@@ -1,0 +1,32 @@
+{
+  "id": "ffmpeg",
+  "title": "FFmpeg Skill",
+  "home": "../",
+  "field": "영상과 시각화",
+  "revision": "c8bc12fd57f6ddd39bb6bdf50800f9af012a2bb4",
+  "scope": "배포용 ffmpeg-skill. 저장소 유지보수용 스킬 제외.",
+  "description": "영상 자르기, 자막 입히기, 음량 조절과 플랫폼별 내보내기를 다룹니다.",
+  "items": [
+    {
+      "id": "ffmpeg-skill",
+      "name": "ffmpeg-skill",
+      "summary": "로컬 FFmpeg로 영상과 오디오 편집하기",
+      "category": "영상 편집",
+      "when": "촬영본을 짧게 편집하거나 자막, 화면 비율, 음량을 맞출 때. FFmpeg 6.1 이상과 Python 3.10 이상이 필요합니다.",
+      "example": "인터뷰 영상에서 첫 30초를 자르고 세로 영상으로 내보내 줘. 원본은 보관해 줘.",
+      "result": "지정한 형식의 미디어 파일과 해상도, 길이 등 출력 조건 확인 결과.",
+      "keywords": [
+        "영상 편집",
+        "동영상 자르기",
+        "자막",
+        "오디오",
+        "소리",
+        "릴스",
+        "비디오",
+        "음량"
+      ],
+      "source": "https://github.com/kajisho5/ffmpeg-skill/blob/c8bc12fd57f6ddd39bb6bdf50800f9af012a2bb4/SKILL.md"
+    }
+  ],
+  "scenarios": []
+}

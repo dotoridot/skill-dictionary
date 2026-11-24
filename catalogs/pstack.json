@@ -1,6 +1,7 @@
 {
   "id": "pstack",
   "home": "../",
+  "field": "개발 과정과 협업",
   "title": "pstack",
   "description": "코드를 읽고 설계하고 검증할 때 쓰는 작업 도구와 판단 원칙을 목적별로 찾습니다.",
   "revision": "005d8f6e8ec057b738adcd08a08b30db0478402d",

@@ -1,0 +1,31 @@
+{
+  "id": "diagram-design",
+  "title": "Diagram Design",
+  "home": "../",
+  "field": "영상과 시각화",
+  "revision": "0eeda75a708f419560d5e032693618bb9954f17b",
+  "scope": "공개 diagram-design 스킬.",
+  "description": "복잡한 구조와 흐름을 다이어그램으로 그려 설명합니다.",
+  "items": [
+    {
+      "id": "diagram-design",
+      "name": "diagram-design",
+      "summary": "구조와 절차를 읽기 쉬운 도식으로 만들기",
+      "category": "정보 시각화",
+      "when": "서비스 간 관계나 사용자 여정을 그림 한 장으로 설명할 때.",
+      "example": "주문부터 배송 완료까지 고객과 운영팀이 하는 일을 스윔레인으로 그려 줘.",
+      "result": "업무 단계와 담당자 간 연결을 보여 주는 다이어그램. HTML과 SVG 등으로 활용할 수 있습니다.",
+      "keywords": [
+        "시각화",
+        "다이어그램",
+        "순서도",
+        "흐름도",
+        "아키텍처",
+        "차트",
+        "그림"
+      ],
+      "source": "https://github.com/cathrynlavery/diagram-design/blob/0eeda75a708f419560d5e032693618bb9954f17b/skills/diagram-design/SKILL.md"
+    }
+  ],
+  "scenarios": []
+}

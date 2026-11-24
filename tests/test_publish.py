@@ -37,6 +37,18 @@ class PublishingTest(unittest.TestCase):
         self.assertNotIn("EDITOR-ONLY", index)
         self.assertIn("원고 검토", index)
 
+    def test_home_groups_collections_and_links_to_each_field(self):
+        self.data["field"] = "설계 & 구현"
+        second = self.data | {"id": "second", "title": "두 번째"}
+        (self.catalog.parent / "second.json").write_text(json.dumps(second))
+        self.build()
+        page = (self.root / "public/index.html").read_text()
+        self.assertEqual(page.count("<h3>설계 &amp; 구현</h3>"), 1)
+        self.assertIn('href="#field-1"', page)
+        self.assertIn('id="field-1"', page)
+        self.assertIn('href="first/index.html"', page)
+        self.assertIn('href="second/index.html"', page)
+
     def test_renamed_dictionary_retires_only_its_generated_page(self):
         self.build()
         public = self.root / "public"

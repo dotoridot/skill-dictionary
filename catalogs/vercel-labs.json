@@ -1,0 +1,212 @@
+{
+  "id": "vercel-labs",
+  "home": "../",
+  "title": "Vercel Labs",
+  "field": "디자인과 프런트엔드",
+  "description": "React 컴포넌트 설계와 성능, 웹 UI와 문서 검토, Vercel 배포와 운영을 다루는 공식 Agent Skills입니다.",
+  "revision": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
+  "scope": "skills",
+  "items": [
+    {
+      "id": "vercel-react-best-practices",
+      "name": "vercel-react-best-practices",
+      "summary": "React와 Next.js의 느린 로딩 구간 찾기",
+      "category": "React 설계와 성능",
+      "when": "데이터 요청이 줄줄이 이어지거나 번들이 커져 첫 화면 표시가 늦을 때.",
+      "example": "/vercel-react-best-practices 검색 결과와 추천 목록이 순서대로 로드돼. 두 요청의 의존 관계를 확인하고 기다림을 줄일 방법을 찾아줘.",
+      "result": "코드에 적용할 수 있는 성능 개선 후보와 영향도에 따른 우선순위.",
+      "source": "https://github.com/vercel-labs/agent-skills/blob/5a37a6329fbad3666c3207392a6a7c0110e92efb/skills/react-best-practices/SKILL.md",
+      "keywords": [
+        "React",
+        "Next.js",
+        "번들",
+        "느림",
+        "워터폴",
+        "첫 화면",
+        "react-best-practices"
+      ],
+      "related": [
+        "vercel-optimize"
+      ],
+      "comparison": "vercel-optimize — 배포된 Vercel 서비스의 실제 지표에서 원인을 찾을 때 선택합니다."
+    },
+    {
+      "id": "vercel-composition-patterns",
+      "name": "vercel-composition-patterns",
+      "summary": "복잡해진 컴포넌트의 조합 방식 정리하기",
+      "category": "React 설계와 성능",
+      "when": "여러 불리언 prop을 조합해야 해서 호출하는 사람이 어떤 화면이 나올지 알기 어려울 때.",
+      "example": "/vercel-composition-patterns 편집기 툴바에 compact, floating, withLabel이 계속 늘어나. 사용 위치에서 필요한 부분을 조합하는 구조를 제안해줘.",
+      "result": "공통 상태와 하위 컴포넌트의 책임을 정리한 React 인터페이스.",
+      "source": "https://github.com/vercel-labs/agent-skills/blob/5a37a6329fbad3666c3207392a6a7c0110e92efb/skills/composition-patterns/SKILL.md",
+      "keywords": [
+        "React",
+        "컴포넌트",
+        "prop",
+        "조합",
+        "Context",
+        "재사용",
+        "composition-patterns"
+      ],
+      "related": []
+    },
+    {
+      "id": "vercel-react-native-skills",
+      "name": "vercel-react-native-skills",
+      "summary": "React Native와 Expo의 모바일 UI 최적화하기",
+      "category": "React 설계와 성능",
+      "when": "긴 목록에서 스크롤이 끊기거나 네이티브 화면에서 이미지와 제스처가 느릴 때.",
+      "example": "/vercel-react-native-skills Expo 앱에서 사진 목록을 빠르게 스크롤하면 끊겨. 목록 렌더링과 이미지 처리부터 점검해줘.",
+      "result": "React Native 실행 환경에 맞춘 목록, 이미지 또는 상태 처리의 개선 방향.",
+      "source": "https://github.com/vercel-labs/agent-skills/blob/5a37a6329fbad3666c3207392a6a7c0110e92efb/skills/react-native-skills/SKILL.md",
+      "keywords": [
+        "Expo",
+        "React Native",
+        "모바일",
+        "스크롤",
+        "끊김",
+        "react-native-skills"
+      ],
+      "related": []
+    },
+    {
+      "id": "vercel-react-view-transitions",
+      "name": "vercel-react-view-transitions",
+      "summary": "React 화면 사이를 자연스럽게 연결하기",
+      "category": "상호작용",
+      "when": "목록의 카드를 열 때 같은 이미지가 상세 화면으로 이어져 보이게 하고 싶을 때.",
+      "example": "/vercel-react-view-transitions 상품 카드를 탭하면 그 썸네일이 상세 화면의 첫 이미지로 이어지게 해줘. 뒤로 갈 때 방향도 맞춰줘.",
+      "result": "React의 ViewTransition과 필요한 스타일을 사용한 상태 또는 경로 전환.",
+      "source": "https://github.com/vercel-labs/agent-skills/blob/5a37a6329fbad3666c3207392a6a7c0110e92efb/skills/react-view-transitions/SKILL.md",
+      "keywords": [
+        "React",
+        "화면 전환",
+        "애니메이션",
+        "페이지 이동",
+        "공유 요소",
+        "react-view-transitions"
+      ],
+      "related": []
+    },
+    {
+      "id": "web-design-guidelines",
+      "name": "web-design-guidelines",
+      "summary": "웹 UI 코드를 Vercel의 인터페이스 기준으로 검토하기",
+      "category": "디자인과 문서 검토",
+      "when": "폼, 키보드 조작, 이미지나 테마 처리에서 규칙을 어긴 위치를 찾고 싶을 때.",
+      "example": "/web-design-guidelines 가입 폼 파일을 보고 자동완성, 오류 안내와 포커스 표시에서 지침에 어긋난 줄을 알려줘.",
+      "result": "문제가 있는 파일과 줄 번호, 해당하는 인터페이스 지침.",
+      "source": "https://github.com/vercel-labs/agent-skills/blob/5a37a6329fbad3666c3207392a6a7c0110e92efb/skills/web-design-guidelines/SKILL.md",
+      "keywords": [
+        "접근성",
+        "UX",
+        "폼",
+        "웹 디자인",
+        "키보드"
+      ],
+      "related": []
+    },
+    {
+      "id": "writing-guidelines",
+      "name": "writing-guidelines",
+      "summary": "문서의 문장과 구성을 Vercel 작성 기준으로 검토하기",
+      "category": "디자인과 문서 검토",
+      "when": "참조 문서나 가이드의 제목, 용어, 예제 구성이 독자에게 맞는지 점검할 때.",
+      "example": "/writing-guidelines SDK 빠른 시작 가이드를 검토해줘. 독자가 단계마다 무엇을 해야 할지 모호한 줄을 찾아줘.",
+      "result": "기준에서 벗어난 문장과 위치를 짚은 문서 검토 결과.",
+      "source": "https://github.com/vercel-labs/agent-skills/blob/5a37a6329fbad3666c3207392a6a7c0110e92efb/skills/writing-guidelines/SKILL.md",
+      "keywords": [
+        "카피",
+        "문서",
+        "글쓰기",
+        "문체",
+        "가이드",
+        "문구"
+      ],
+      "related": []
+    },
+    {
+      "id": "deploy-to-vercel",
+      "name": "deploy-to-vercel",
+      "summary": "웹 프로젝트를 Vercel에 미리보기로 배포하기",
+      "category": "배포와 운영",
+      "when": "팀원이 직접 열어 볼 미리보기 주소가 필요하고 프로젝트 연결과 배포 상태를 확인할 때.",
+      "example": "/deploy-to-vercel 이 샘플 앱을 Vercel 미리보기로 배포하고 완성된 주소를 알려줘.",
+      "result": "이용 가능한 연결과 권한으로 배포한 결과와 방문할 URL. 기본 대상은 미리보기입니다.",
+      "source": "https://github.com/vercel-labs/agent-skills/blob/5a37a6329fbad3666c3207392a6a7c0110e92efb/skills/deploy-to-vercel/SKILL.md",
+      "keywords": [
+        "배포",
+        "프리뷰",
+        "미리보기",
+        "URL",
+        "웹사이트"
+      ],
+      "related": [
+        "vercel-cli-with-tokens"
+      ],
+      "comparison": "vercel-cli-with-tokens — 토큰을 쓰는 환경에서 CLI로 프로젝트 설정을 다룰 때 선택합니다."
+    },
+    {
+      "id": "vercel-cli-with-tokens",
+      "name": "vercel-cli-with-tokens",
+      "summary": "대화형 로그인 없이 Vercel CLI로 프로젝트 관리하기",
+      "category": "배포와 운영",
+      "when": "CI 환경에서 이미 준비한 액세스 토큰으로 올바른 프로젝트를 연결하거나 배포 설정을 관리할 때.",
+      "example": "/vercel-cli-with-tokens CI에 설정된 토큰으로 이 저장소가 연결할 Vercel 프로젝트를 확인해줘. 인증값은 출력하지 마.",
+      "result": "요청한 CLI 작업의 결과와 대상 팀 또는 프로젝트 확인.",
+      "source": "https://github.com/vercel-labs/agent-skills/blob/5a37a6329fbad3666c3207392a6a7c0110e92efb/skills/vercel-cli-with-tokens/SKILL.md",
+      "keywords": [
+        "CI",
+        "터미널",
+        "인증",
+        "토큰",
+        "환경 변수"
+      ],
+      "related": [
+        "deploy-to-vercel"
+      ],
+      "comparison": "deploy-to-vercel — 프로젝트를 배포해 미리보기 URL이 필요할 때 선택합니다."
+    },
+    {
+      "id": "vercel-optimize",
+      "name": "vercel-optimize",
+      "summary": "배포한 서비스의 비용과 지연 원인 조사하기",
+      "category": "배포와 운영",
+      "when": "Vercel 요금이나 응답 시간이 늘었는데 어느 경로나 설정을 먼저 봐야 할지 모를 때.",
+      "example": "/vercel-optimize 지난주부터 함수 호출이 늘었어. 실제 사용 지표로 영향을 받는 경로를 찾고 고칠 후보를 정리해줘.",
+      "result": "관측 지표와 코드 위치를 연결한 비용, 성능 개선 후보의 우선순위.",
+      "source": "https://github.com/vercel-labs/agent-skills/blob/5a37a6329fbad3666c3207392a6a7c0110e92efb/skills/vercel-optimize/SKILL.md",
+      "keywords": [
+        "비용",
+        "캐시",
+        "지연",
+        "요금",
+        "호출 수",
+        "성능"
+      ],
+      "related": [
+        "vercel-react-best-practices"
+      ],
+      "comparison": "vercel-react-best-practices — React 코드의 요청 순서나 렌더링을 개선할 때 선택합니다."
+    }
+  ],
+  "scenarios": [
+    {
+      "title": "상품 목록에서 상세로 넘어가는 흐름 개선",
+      "steps": [
+        {
+          "id": "vercel-react-best-practices",
+          "note": "상품 목록이 뜰 때까지 기다리는 요청과 초기 번들을 점검해 성능 문제를 먼저 좁힙니다."
+        },
+        {
+          "id": "vercel-react-view-transitions",
+          "note": "정리한 로딩 흐름을 바탕으로 카드 이미지가 상세 화면까지 이어지는 전환을 구현합니다."
+        },
+        {
+          "id": "web-design-guidelines",
+          "note": "변경한 목록과 상세 화면에서 포커스와 움직임 감소 설정 등 이용 조건을 확인합니다."
+        }
+      ]
+    }
+  ]
+}

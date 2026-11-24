@@ -1,0 +1,286 @@
+{
+  "id": "anthropic-content",
+  "home": "../",
+  "title": "Anthropic 문서와 콘텐츠",
+  "field": "문서와 콘텐츠",
+  "description": "제안서를 함께 쓰고 Word, PDF, PowerPoint, Excel로 편집하거나 포스터와 움직이는 이미지를 만드는 스킬 11개입니다.",
+  "revision": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+  "scope": "skills/의 19개 스킬 중 글쓰기, 문서 파일, 시각물 제작과 서식을 직접 다루는 11개를 선별했습니다.",
+  "items": [
+    {
+      "id": "doc-coauthoring",
+      "name": "doc-coauthoring",
+      "category": "내용 기획과 집필",
+      "summary": "독자와 목적을 먼저 정하고, 초안을 읽은 사람이 어디에서 막히는지 확인합니다.",
+      "when": "제안서나 기술 명세의 배경을 설명할 수 있지만 어떤 순서로 써야 할지 모를 때",
+      "example": "재사용 용기 도입 제안서를 같이 쓰자. 매장 책임자가 결정할 내용을 먼저 물어보고, 초안을 읽은 사람이 답할 수 있어야 하는 질문을 정해줘.",
+      "result": "독자에게 필요한 배경과 판단 기준을 담은 초안, 독자가 답하지 못해 보완할 부분.",
+      "keywords": [
+        "공동집필",
+        "기획서",
+        "명세서",
+        "제안서",
+        "초안",
+        "독자",
+        "검토"
+      ],
+      "related": [
+        "docx",
+        "internal-comms"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/doc-coauthoring/SKILL.md",
+      "sourceSha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4"
+    },
+    {
+      "id": "internal-comms",
+      "name": "internal-comms",
+      "category": "내용 기획과 집필",
+      "summary": "업무 메모에서 팀원이나 경영진이 알아야 할 소식을 골라 사내 공유문을 씁니다.",
+      "when": "진척 상황, 이번 주 계획, 도움이 필요한 일을 사내 양식에 맞춰 공유할 때",
+      "example": "이번 주 배송 개선 메모를 팀 주간보고로 정리해줘. 완료한 일, 다음 주 계획, 다른 팀의 결정이 필요한 일을 나눠줘.",
+      "result": "공유 목적에 맞게 구성한 주간보고, 사내 소식지 또는 FAQ 초안.",
+      "keywords": [
+        "사내",
+        "공지",
+        "뉴스레터",
+        "주간보고",
+        "진행상황",
+        "FAQ",
+        "업무공유"
+      ],
+      "related": [
+        "doc-coauthoring"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/internal-comms/SKILL.md",
+      "sourceSha256": "067b7587a344a928fc6534ef66b1bcd591fc7c26d207ea7ca3334aeb678d6475"
+    },
+    {
+      "id": "docx",
+      "name": "docx",
+      "category": "문서 파일",
+      "summary": "편집 가능한 Word 문서를 만들고 기존 문서의 표, 서식, 댓글을 수정합니다.",
+      "when": "검토자가 Word에서 수정할 제안서나 편지, 서식 파일이 필요할 때",
+      "example": "확정한 제안서를 .docx로 만들어줘. 예산은 표로 넣고 검토가 필요한 비용 항목에는 댓글을 달아줘.",
+      "result": "제목, 표와 검토 댓글이 담긴 Word 파일.",
+      "keywords": [
+        "워드",
+        "문서",
+        "표",
+        "댓글",
+        "서식",
+        "제안서",
+        "docx"
+      ],
+      "related": [
+        "doc-coauthoring",
+        "pdf"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/docx/SKILL.md",
+      "sourceSha256": "895d5aa6c4cd98e4aed4c995d846f056f3549086e79bcd6617afea6014f82288"
+    },
+    {
+      "id": "pdf",
+      "name": "pdf",
+      "category": "문서 파일",
+      "summary": "PDF에서 표와 문장을 꺼내고, 원하는 페이지를 골라 새 PDF로 묶습니다.",
+      "when": "여러 PDF에 흩어진 자료를 모으거나 스캔본에서 검색할 수 있는 텍스트를 얻고 싶을 때",
+      "example": "행사 일정 PDF의 2쪽과 장소 안내 PDF의 1쪽을 이 순서로 합쳐 참가자용 PDF를 만들어줘.",
+      "result": "지정한 페이지를 순서대로 묶은 PDF. 스캔 자료는 OCR로 텍스트를 추출할 수 있습니다.",
+      "keywords": [
+        "피디에프",
+        "합치기",
+        "페이지",
+        "분리",
+        "추출",
+        "스캔",
+        "OCR",
+        "양식"
+      ],
+      "related": [
+        "docx"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md",
+      "sourceSha256": "d1c7caf5f35eb7d37877dd7fc33a095037be2b34fb5d2f7f4d43bde3165bb4ee"
+    },
+    {
+      "id": "pptx",
+      "name": "pptx",
+      "category": "문서 파일",
+      "summary": "기존 PowerPoint 템플릿을 활용해 발표 자료를 만들고 슬라이드별 배치를 점검합니다.",
+      "when": "이미 정리한 조사 결과를 발표자가 설명할 순서로 나누고 싶을 때",
+      "example": "기존 발표 템플릿에 방문객 설문 결과를 담아줘. 첫 장은 결론, 다음 장은 근거 그래프, 마지막 장은 다음 분기 제안으로 구성해줘.",
+      "result": "제공한 템플릿과 자료를 사용한 편집 가능한 PowerPoint 슬라이드.",
+      "keywords": [
+        "발표",
+        "프레젠테이션",
+        "슬라이드",
+        "파워포인트",
+        "발표자료",
+        "덱"
+      ],
+      "related": [
+        "theme-factory",
+        "xlsx"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pptx/SKILL.md",
+      "sourceSha256": "598c981d93f2173b251f86a4bc94e9fb4e4f5ddaa314ba2dd4eca24b7a07808e"
+    },
+    {
+      "id": "xlsx",
+      "name": "xlsx",
+      "category": "문서 파일",
+      "summary": "CSV나 Excel의 표를 정리하고 수식을 다시 계산할 수 있는 통합 문서로 만듭니다.",
+      "when": "행마다 다른 표기와 빈 값이 섞인 표를 정리해 합계나 추이를 계속 확인할 때",
+      "example": "월별 입장권 판매 CSV 세 개를 한 통합 문서에 모아줘. 날짜 표기를 통일하고 월별 합계는 수식으로 넣어줘.",
+      "result": "정리한 판매 내역과 다시 계산할 수 있는 월별 합계를 담은 Excel 파일.",
+      "keywords": [
+        "엑셀",
+        "스프레드시트",
+        "수식",
+        "CSV",
+        "표",
+        "정리",
+        "집계",
+        "통합문서"
+      ],
+      "related": [
+        "pptx"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md",
+      "sourceSha256": "f32b1c2b5d5d31e02964df110d6489613d9345f86830c118cfe24159d8448ce6"
+    },
+    {
+      "id": "canvas-design",
+      "name": "canvas-design",
+      "category": "시각 콘텐츠",
+      "summary": "전달할 분위기와 시각 원칙을 정한 뒤 한 장의 포스터나 정적 이미지를 만듭니다.",
+      "when": "인쇄하거나 이미지로 공유할 독창적인 시각 작품이 필요할 때",
+      "example": "야간 식물원의 개장 포스터를 만들어줘. 잎의 겹침과 어두운 배경으로 분위기를 표현하고 제목은 작게 넣어줘.",
+      "result": "디자인 방향을 반영한 PNG 또는 PDF 시각물.",
+      "keywords": [
+        "포스터",
+        "전시",
+        "인쇄",
+        "디자인",
+        "그래픽",
+        "PNG"
+      ],
+      "related": [
+        "algorithmic-art",
+        "theme-factory"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/canvas-design/SKILL.md",
+      "sourceSha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b"
+    },
+    {
+      "id": "algorithmic-art",
+      "name": "algorithmic-art",
+      "category": "시각 콘텐츠",
+      "summary": "p5.js에서 시드와 매개변수로 변화하는 생성형 작품을 만듭니다.",
+      "when": "결과 한 장뿐 아니라 값을 바꾸면서 패턴이 달라지는 과정을 탐색하고 싶을 때",
+      "example": "바람에 씨앗이 흩어지는 움직임을 생성형 그림으로 표현해줘. 같은 시드는 같은 모양이 나오고 밀도는 직접 바꿀 수 있게 해줘.",
+      "result": "시드와 매개변수를 조절하면서 작품을 살펴볼 수 있는 HTML.",
+      "keywords": [
+        "생성형",
+        "미술",
+        "패턴",
+        "매개변수",
+        "인터랙티브",
+        "p5",
+        "시드"
+      ],
+      "related": [
+        "canvas-design"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/algorithmic-art/SKILL.md",
+      "sourceSha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef"
+    },
+    {
+      "id": "slack-gif-creator",
+      "name": "slack-gif-creator",
+      "category": "시각 콘텐츠",
+      "summary": "짧은 움직임을 Slack에 올릴 애니메이션 GIF로 만들고 크기와 프레임을 점검합니다.",
+      "when": "말풍선에 넣을 작은 반응이나 팀의 축하 애니메이션을 만들 때",
+      "example": "새싹이 고개를 끄덕이는 Slack 이모지 GIF를 만들어줘. 작게 봐도 움직임이 잘 보이게 해줘.",
+      "result": "Slack 용도에 맞춰 크기와 프레임을 조정한 GIF.",
+      "keywords": [
+        "슬랙",
+        "이모지",
+        "움짤",
+        "GIF",
+        "애니메이션",
+        "반응"
+      ],
+      "related": [
+        "canvas-design"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/slack-gif-creator/SKILL.md",
+      "sourceSha256": "2efca615ce55a3edd8fc05c779068a8085816617991987e446606403cd3abb22"
+    },
+    {
+      "id": "theme-factory",
+      "name": "theme-factory",
+      "category": "색과 글꼴",
+      "summary": "기성 테마를 고르거나 새 색상과 글꼴 조합을 만들어 자료에 적용합니다.",
+      "when": "내용이 완성된 발표 자료나 보고서에 일관된 시각 스타일이 필요할 때",
+      "example": "바다 관찰 수업 슬라이드에 어울리는 테마를 보여줘. 내가 고른 색과 글꼴을 표지와 본문에 적용해줘.",
+      "result": "선택한 테마의 색상과 글꼴을 적용한 자료.",
+      "keywords": [
+        "테마",
+        "색상",
+        "글꼴",
+        "팔레트",
+        "스타일",
+        "통일",
+        "발표"
+      ],
+      "related": [
+        "brand-guidelines",
+        "pptx"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/theme-factory/SKILL.md",
+      "sourceSha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552"
+    },
+    {
+      "id": "brand-guidelines",
+      "name": "brand-guidelines",
+      "category": "색과 글꼴",
+      "summary": "Anthropic의 브랜드 색상과 영문 글꼴 지침을 자료에 적용합니다.",
+      "when": "Anthropic의 시각 스타일을 지정한 슬라이드나 문서를 정리할 때",
+      "example": "이 영문 소개 자료에 Anthropic 브랜드 색상과 타이포그래피를 적용해줘. 제목과 본문 스타일을 구분해줘.",
+      "result": "Anthropic 기준에 맞춰 색과 글꼴을 정리한 자료.",
+      "keywords": [
+        "브랜드",
+        "가이드",
+        "Anthropic",
+        "로고",
+        "색상",
+        "타이포그래피"
+      ],
+      "related": [
+        "theme-factory"
+      ],
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/brand-guidelines/SKILL.md",
+      "sourceSha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe"
+    }
+  ],
+  "scenarios": [
+    {
+      "title": "설문 결과를 발표 자료로 만들기",
+      "steps": [
+        {
+          "id": "xlsx",
+          "note": "설문 응답 표를 정리하고 항목별 응답 수를 계산합니다. 집계표를 발표 자료의 근거로 넘깁니다."
+        },
+        {
+          "id": "pptx",
+          "note": "집계표에서 발표할 결론과 그래프를 골라 슬라이드 초안을 만듭니다."
+        },
+        {
+          "id": "theme-factory",
+          "note": "완성된 슬라이드 초안에 청중과 행사에 맞는 색상과 글꼴을 적용합니다."
+        }
+      ]
+    }
+  ]
+}

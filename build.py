@@ -14,6 +14,7 @@ from render import render, style_document
 
 def generate(output):
     library = []
+    fields = {}
     seen = set()
     for path in sorted((ROOT / "catalogs").glob("*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -24,15 +25,35 @@ def generate(output):
         directory = output / slug
         directory.mkdir(parents=True, exist_ok=True)
         (directory / "index.html").write_text(render(data), encoding="utf-8")
+        field = data.get("field") or "기타 분야"
+        fields.setdefault(field, []).append(data)
         library.append({key: data[key] for key in ("id", "title", "description")} | {
+            "field": field,
             "items": [{key: item.get(key) for key in ("id", "name", "summary", "category", "when", "keywords")} for item in data["items"]]
         })
     if not library:
         raise ValueError("No catalogs found")
     template = (ROOT / "site/index.html").read_text(encoding="utf-8")
     encoded = json.dumps(library, ensure_ascii=False).replace("<", r"\u003c")
-    links = "".join(f'<a class="collection" href="{d["id"]}/index.html"><span><strong>{html.escape(d["title"])}</strong><small>{html.escape(d["description"])}</small></span><b>{len(d["items"])}개 ↗</b></a>' for d in library)
-    page = template.replace("<!--COLLECTIONS-->", links).replace("/*CATALOGS*/", encoded)
+    jumps = []
+    sections = []
+    for number, (field, collections) in enumerate(sorted(fields.items()), start=1):
+        label = html.escape(field)
+        anchor = f"field-{number}"
+        jumps.append(f'<a href="#{anchor}">{label}</a>')
+        links = []
+        for collection in collections:
+            slug = collection["id"]
+            title = html.escape(collection["title"])
+            description = html.escape(collection["description"])
+            count = len(collection["items"])
+            links.append(
+                f'<a class="collection" href="{slug}/index.html"><span><strong>{title}</strong>'
+                f'<small>{description}</small></span><b>{count}개 ↗</b></a>'
+            )
+        sections.append(f'<section class="field" id="{anchor}"><h3>{label}</h3>{"".join(links)}</section>')
+    page = (template.replace("<!--FIELD_LINKS-->", "".join(jumps))
+            .replace("<!--COLLECTIONS-->", "".join(sections)).replace("/*CATALOGS*/", encoded))
     (output / "index.html").write_text(style_document(page), encoding="utf-8")
 
 

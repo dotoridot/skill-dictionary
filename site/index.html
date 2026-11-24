@@ -69,6 +69,12 @@ h1 { margin: clamp(2.5rem, 7vw, 5rem) 0 .55rem; }
 main p { margin: 0 0 2rem; color: var(--secondary); max-width: 72ch; }
 main label { display: block; font-weight: 600; margin-block-end: .35rem; }
 h2 { margin: 2.3rem 0 .6rem; }
+.field-links { display: flex; flex-wrap: wrap; gap: .25rem .5rem; margin: 1rem 0 2rem; }
+.field-links a { padding: .55rem .8rem; background: var(--control-bg); border-radius: var(--radius-button); text-decoration: none; font-size: .875rem; }
+.field-links a:hover { text-decoration: underline; }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 2rem 2.5rem; }
+.field { min-width: 0; scroll-margin-top: 1rem; }
+.field h3 { margin: 0 0 .65rem; font-size: 1.125rem; }
 #count { font-variant-numeric: tabular-nums; }
 .collection, .match {
   display: flex;
@@ -117,9 +123,11 @@ footer { margin-top: 3rem; color: var(--secondary); font-size: .8125rem; }
     </g>
   </svg>
 </div>
-<section id="collections"><h2>사전 목록</h2><!--COLLECTIONS--></section>
+<section id="collections"><h2>분야별 사전</h2>
+<nav class="field-links" aria-label="분야 바로가기"><!--FIELD_LINKS--></nav>
+<div class="fields"><!--COLLECTIONS--></div></section>
 <section id="results" hidden><h2 aria-live="polite" id="count"></h2><div id="matches"></div></section></main>
-<footer><span>commeng.run / 스킬 사전</span></footer>
+<footer><span>commeng.run / 스킬 사전</span><a href="https://github.com/dotoridot/skill-dictionary#수록-분야와-선정-근거">사전 선정 기준</a></footer>
 <script type="application/json" id="data">/*CATALOGS*/</script>
 <script>
 const catalogs = JSON.parse(document.querySelector('#data').textContent);
@@ -135,7 +143,7 @@ function search() {
   const ranked = [];
   for (const group of catalogs) {
     for (const item of group.items) {
-      const score = searchScore(item, term, group.title);
+      const score = searchScore(item, term, group.title + " " + group.field);
       if (score >= 0) ranked.push({ group, item, score });
     }
   }
