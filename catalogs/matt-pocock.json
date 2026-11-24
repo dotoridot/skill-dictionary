@@ -1,0 +1,472 @@
+{
+  "id": "matt-pocock",
+  "home": "../",
+  "title": "Matt Pocock",
+  "description": "질문으로 요구사항을 정하고, 명세를 구현하고, 검토와 회고까지 이어가는 스킬을 찾습니다.",
+  "revision": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
+  "scope": "skills/engineering, skills/productivity",
+  "items": [
+    {
+      "id": "setup-matt-pocock-skills",
+      "name": "setup-matt-pocock-skills",
+      "summary": "저장소에 스킬 설정하기",
+      "category": "시작과 설정",
+      "when": "저장소별 이슈 관리 도구, 분류 라벨, 문서 위치를 설정할 때",
+      "example": "/setup-matt-pocock-skills 이 저장소의 이슈는 GitHub에서 관리하고 용어집은 docs에 두고 싶어. 처음 설정을 도와줘.",
+      "result": "저장소의 이슈 관리 방식, 분류 라벨과 문서 위치를 정한 설정.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/setup-matt-pocock-skills/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "ask-matt",
+      "name": "ask-matt",
+      "summary": "상황에 맞는 스킬 고르기",
+      "category": "시작과 설정",
+      "when": "지금 상황에 어떤 스킬을 쓸지 모를 때",
+      "example": "/ask-matt 메모 앱의 동기화 요구가 기존 동작과 충돌해. 어느 스킬부터 쓰면 될까?",
+      "result": "현재 상황에 맞는 스킬과 이어서 사용할 순서.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/ask-matt/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "grill-with-docs",
+      "name": "grill-with-docs",
+      "summary": "코드와 문서를 보며 요구사항 정하기",
+      "category": "요구사항 정하기",
+      "when": "코드와 문서를 보며 질문하고, 합의한 용어와 결정 이유를 남길 때",
+      "example": "/grill-with-docs 이 앱에서 ‘저장 완료’가 파일 기록인지 화면 갱신까지인지 확인하고 질문해줘. 합의한 뜻은 용어집에 남겨줘.",
+      "result": "코드에 근거한 결정과 용어 정의, 필요한 설계 기록.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/grill-with-docs/SKILL.md",
+      "related": [
+        "tdd"
+      ],
+      "keywords": [],
+      "comparison": "tdd — 기대 동작이 정해져 테스트부터 시작할 때."
+    },
+    {
+      "id": "grill-me",
+      "name": "grill-me",
+      "summary": "질문으로 계획 점검하기",
+      "category": "요구사항 정하기",
+      "when": "머릿속 계획을 질문으로 점검할 때",
+      "example": "/grill-me 독서 모임의 도서 대여 규칙을 질문으로 점검해줘. 한 사람이 같은 책을 다시 빌릴 때도 결정해야 해.",
+      "result": "계획에서 아직 결정하지 않은 조건과 그에 대한 질문.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/grill-me/SKILL.md",
+      "related": [
+        "to-questionnaire"
+      ],
+      "keywords": [],
+      "comparison": "to-questionnaire — 고객이나 담당자만 답할 수 있는 질문을 모을 때."
+    },
+    {
+      "id": "grilling",
+      "name": "grilling",
+      "summary": "답변 순서에 맞춰 질문하기",
+      "category": "요구사항 정하기",
+      "when": "여러 스킬에서 질문 절차를 재사용할 때. 독립적인 질문은 함께 묻고, 앞선 답이 필요한 질문은 다음 차례에 둡니다.",
+      "example": "/grilling 책 대여 대상과 대여 기간처럼 독립적인 조건은 함께 묻고, 연체 시 조치는 내 답을 듣고 질문해줘.",
+      "result": "현재 결정할 질문과 추천 답안. 답변을 반영해 다음 질문을 이어갑니다.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/grilling/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "domain-modeling",
+      "name": "domain-modeling",
+      "summary": "팀과 고객이 쓰는 용어 맞추기",
+      "category": "요구사항 정하기",
+      "when": "팀, 코드, 고객이 같은 단어를 다른 뜻으로 쓸 때",
+      "example": "/domain-modeling ‘반납’이 책을 접수했다는 뜻인지 검수까지 끝났다는 뜻인지 사례를 보고 용어를 정리해줘.",
+      "result": "팀과 코드에서 함께 사용할 용어, 필요한 정의와 설계 기록.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/domain-modeling/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "to-spec",
+      "name": "to-spec",
+      "summary": "합의한 내용을 명세로 남기기",
+      "category": "요구사항 정하기",
+      "when": "대화에서 합의한 내용을 개발 명세로 남길 때",
+      "example": "/to-spec 합의한 동기화 재시도 조건, 최대 횟수, 마지막 실패를 표시하는 방법을 이슈 명세로 정리해줘.",
+      "result": "합의한 조건과 범위를 담아 프로젝트의 이슈 관리 방식에 맞춘 명세.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/to-spec/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "to-questionnaire",
+      "name": "to-questionnaire",
+      "summary": "고객이나 담당자에게 물어볼 질문 만들기",
+      "category": "요구사항 정하기",
+      "when": "답을 가진 고객사나 담당자에게 질문지를 보낼 때",
+      "example": "/to-questionnaire 테스트 참가자만 아는 재현 환경과 발생 시점을 회신받을 수 있게 질문지를 만들어줘.",
+      "result": "해당 결정을 내리는 사람이 직접 답할 수 있는 질문지.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/to-questionnaire/SKILL.md",
+      "related": [
+        "grill-me"
+      ],
+      "keywords": [],
+      "comparison": "grill-me — 내가 답할 수 있는 질문으로 계획을 점검할 때."
+    },
+    {
+      "id": "wayfinder",
+      "name": "wayfinder",
+      "summary": "복잡한 일의 결정 순서 정하기",
+      "category": "구조 설계하기",
+      "when": "일이 커서 무엇부터 결정해야 할지 모를 때",
+      "example": "/wayfinder 공유 도서관 서비스를 만들려고 해. 대여 권한, 재고, 알림 중에서 먼저 결정할 문제를 정리해줘.",
+      "result": "남은 결정과 선후 관계를 보여주는 이슈 지도.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/wayfinder/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "prototype",
+      "name": "prototype",
+      "summary": "눌러볼 수 있는 시안으로 비교하기",
+      "category": "구조 설계하기",
+      "when": "직접 움직여 봐야 설계안을 선택할 수 있을 때",
+      "example": "/prototype 대기열을 기기별로 볼지 요청별로 볼지 고를 수 있게 눌러 볼 수 있는 두 시안을 만들어줘.",
+      "result": "설계 질문을 직접 시험할 수 있는 임시 시안.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/prototype/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "improve-codebase-architecture",
+      "name": "improve-codebase-architecture",
+      "summary": "손볼 가치가 큰 구조 찾기",
+      "category": "구조 설계하기",
+      "when": "기존 코드에서 구조를 손볼 곳을 찾을 때",
+      "example": "/improve-codebase-architecture 새 출력 형식을 하나 추가할 때 여러 모듈을 함께 고쳐야 하는 부분을 찾아 개선 후보를 보여줘.",
+      "result": "구조 개선 후보를 모은 HTML 보고서와 선택한 후보에 대한 설계 논의.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/improve-codebase-architecture/SKILL.md",
+      "related": [
+        "codebase-design"
+      ],
+      "keywords": [],
+      "comparison": "codebase-design — 한 모듈의 책임과 인터페이스를 정할 때."
+    },
+    {
+      "id": "codebase-design",
+      "name": "codebase-design",
+      "summary": "모듈의 책임과 인터페이스 설계하기",
+      "category": "구조 설계하기",
+      "when": "모듈의 책임과 제공할 인터페이스를 설계할 때",
+      "example": "/codebase-design 호출자가 타이머나 캐시를 몰라도 문서 저장을 요청하고 최종 결과를 받을 수 있는 인터페이스를 설계해줘.",
+      "result": "호출자에게 드러낼 기능과 모듈이 내부에서 책임질 동작.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/codebase-design/SKILL.md",
+      "related": [
+        "improve-codebase-architecture"
+      ],
+      "keywords": [],
+      "comparison": "improve-codebase-architecture — 기존 코드에서 손볼 가치가 큰 곳을 찾을 때."
+    },
+    {
+      "id": "diagnosing-bugs",
+      "name": "diagnosing-bugs",
+      "summary": "버그나 성능 저하 원인 좁히기",
+      "category": "원인 찾기",
+      "when": "원인이 불분명한 버그나 성능 저하를 조사할 때",
+      "example": "/diagnosing-bugs 이미지 목록 로딩이 특정 파일에서만 느려. 반복 측정할 방법부터 만들고 느려지는 구간을 찾아줘.",
+      "result": "다시 실행할 수 있는 재현 절차와 실험으로 좁힌 원인.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/diagnosing-bugs/SKILL.md",
+      "related": [
+        "research"
+      ],
+      "keywords": [],
+      "comparison": "research — 플랫폼이 보장하는 동작을 공식 자료에서 확인할 때."
+    },
+    {
+      "id": "research",
+      "name": "research",
+      "summary": "공식 문서에서 동작 조건 확인하기",
+      "category": "원인 찾기",
+      "when": "공식 문서와 원문에서 근거를 찾아야 할 때",
+      "example": "/research 웹에서 오프라인 저장 데이터가 지워질 수 있는 조건을 브라우저 공식 문서로 확인하고 근거를 남겨줘.",
+      "result": "확인한 사실, 출처와 남은 의문을 정리한 Markdown 문서.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/research/SKILL.md",
+      "related": [
+        "diagnosing-bugs"
+      ],
+      "keywords": [],
+      "comparison": "diagnosing-bugs — 우리 코드에서 기대 결과가 나오지 않는 이유를 좁힐 때."
+    },
+    {
+      "id": "triage",
+      "name": "triage",
+      "summary": "제보를 분류하고 재현 정보 확인하기",
+      "category": "원인 찾기",
+      "when": "접수된 이슈를 착수할 수 있는 상태로 정리할 때",
+      "example": "/triage 접수된 동기화 오류 중 재현 정보가 필요한 건과 바로 수정에 착수할 수 있는 건을 분류해줘.",
+      "result": "분류한 이슈, 더 필요한 정보와 구현자가 이어받을 설명.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/triage/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "to-tickets",
+      "name": "to-tickets",
+      "summary": "명세를 검증 가능한 티켓으로 나누기",
+      "category": "구현과 검토",
+      "when": "큰 명세를 각각 구현하고 검증할 수 있는 작업으로 나눌 때",
+      "example": "/to-tickets 동기화 명세를 ‘첫 재시도 성공’과 ‘재시도 소진’처럼 끝까지 실행해 볼 수 있는 티켓으로 나눠줘.",
+      "result": "각각 검증할 수 있는 티켓과 티켓 사이의 선후 관계.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/to-tickets/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "implement",
+      "name": "implement",
+      "summary": "티켓 하나를 구현하기",
+      "category": "구현과 검토",
+      "when": "명세나 티켓을 실제 코드로 옮길 때",
+      "example": "/implement 장바구니의 첫 상품 추가 티켓을 구현해줘. 합의한 사용자 동작으로 테스트와 리뷰까지 진행해줘.",
+      "result": "티켓에서 요구한 동작의 구현과 이를 확인한 결과.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/implement/SKILL.md",
+      "related": [
+        "implement-spec"
+      ],
+      "keywords": [],
+      "comparison": "implement-spec — 여러 티켓의 선후 관계와 병렬 작업을 관리할 때."
+    },
+    {
+      "id": "implement-spec",
+      "name": "implement-spec",
+      "summary": "여러 티켓의 구현 순서 정하고 진행하기",
+      "category": "구현과 검토",
+      "when": "여러 티켓의 명세를 구현하고 독립적인 작업을 병렬 처리할 때",
+      "example": "/implement-spec 공통 저장 형식을 먼저 정하고, 서로 독립적인 가져오기와 내보내기 티켓을 구현해줘.",
+      "result": "선후 관계에 따라 처리한 티켓의 변경분과 통합 결과.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/implement-spec/SKILL.md",
+      "related": [
+        "implement"
+      ],
+      "keywords": [],
+      "comparison": "implement — 티켓 하나를 구현하고 검토할 때."
+    },
+    {
+      "id": "tdd",
+      "name": "tdd",
+      "summary": "기대 동작을 테스트로 고정하기",
+      "category": "구현과 검토",
+      "when": "입력과 기대 결과가 정해진 행동을 하나씩 구현할 때",
+      "example": "/tdd 서버가 503 다음에 200을 반환하면 사용자에게 성공 결과 한 번만 보이는지 실패하는 테스트부터 써줘.",
+      "result": "한 동작씩 실패와 통과를 확인한 테스트와 구현.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/tdd/SKILL.md",
+      "related": [
+        "grill-with-docs"
+      ],
+      "keywords": [],
+      "comparison": "grill-with-docs — 코드와 문서를 보며 요구사항을 맞출 때."
+    },
+    {
+      "id": "code-review",
+      "name": "code-review",
+      "summary": "저장소 규칙과 명세에 맞는지 검토하기",
+      "category": "구현과 검토",
+      "when": "변경분이 저장소 규칙과 원래 명세를 각각 충족하는지 검토할 때",
+      "example": "/code-review 첫 재시도에서 실패 화면이 보이는 변경이야. 코드 규칙과 명세를 각각 만족하는지 확인해줘.",
+      "result": "저장소 규칙과 기능 명세를 각각 대조한 리뷰 결과.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/code-review/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "pr",
+      "name": "pr",
+      "summary": "병합을 판단할 PR 본문 쓰기",
+      "category": "구현과 검토",
+      "when": "병합 여부를 판단할 수 있는 PR 본문을 작성할 때",
+      "example": "/pr 동기화 변경 전후 사용자가 보는 화면, 영향 범위, 검증 결과로 PR 본문을 작성해줘.",
+      "result": "리뷰어가 어떤 동작이 바뀌었는지 판단할 PR 본문.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/pr/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "wizard",
+      "name": "wizard",
+      "summary": "사람이 할 설정을 스크립트로 안내하기",
+      "category": "구현과 검토",
+      "when": "사람이 직접 해야 하는 설정을 대화형 스크립트로 안내할 때",
+      "example": "/wizard 새 기기 연결 과정에서 사람이 화면의 신뢰 버튼을 누르고 연결 결과를 확인할 수 있게 안내 스크립트를 만들어줘.",
+      "result": "사람의 입력이 필요한 단계를 차례로 안내하는 대화형 셸 스크립트.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/wizard/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "handoff",
+      "name": "handoff",
+      "summary": "다음 담당자에게 작업 넘기기",
+      "category": "인수인계와 학습",
+      "when": "긴 작업을 다른 세션이나 에이전트가 이어받을 때",
+      "example": "/handoff 다음 작업자가 바로 시작하도록 사용한 입력, 확인한 로그, 배제한 가설과 다음 측정 한 가지를 남겨줘.",
+      "result": "현재 작업 상태와 근거, 다음 행동을 담은 인계 문서.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/handoff/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "teach",
+      "name": "teach",
+      "summary": "여러 세션에 걸쳐 학습하기",
+      "category": "인수인계와 학습",
+      "when": "한 주제를 여러 세션에 걸쳐 배우고 진도를 이어갈 때",
+      "example": "/teach 이 저장소의 이미지 처리 흐름을 배우고 싶어. 오늘은 진입점을 보고 다음에는 내가 경로를 찾아보게 해줘.",
+      "result": "현재 이해 수준에 맞춘 설명과 연습, 이어서 학습할 내용.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/teach/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "wait-what",
+      "name": "wait-what",
+      "summary": "방금 들은 설명 다시 풀기",
+      "category": "인수인계와 학습",
+      "when": "방금 받은 설명에서 의미를 놓쳤을 때",
+      "example": "/wait-what ‘상태 경계를 올린다’는 게 무슨 뜻이야? 장바구니에서 어떤 값이 어디로 옮겨가는지 다시 설명해줘.",
+      "result": "앞서 이해하기 어려웠던 지점을 다시 풀어 쓴 설명.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/wait-what/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "writing-for-agents",
+      "name": "writing-for-agents",
+      "summary": "에이전트 지침 정리하기",
+      "category": "인수인계와 학습",
+      "when": "AGENTS.md, SKILL.md처럼 에이전트가 읽을 지침을 정리할 때",
+      "example": "/writing-for-agents 이미지 제작 지침에서 같은 규칙이 세 번 나와. 한곳에 모으고 실제 결과를 확인할 기준을 남겨줘.",
+      "result": "에이전트가 언제 어떤 절차와 자료를 써야 하는지 드러나는 지침.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/writing-for-agents/SKILL.md",
+      "related": [],
+      "keywords": []
+    },
+    {
+      "id": "retro",
+      "name": "retro",
+      "summary": "다음 작업의 시행착오 줄이기",
+      "category": "인수인계와 학습",
+      "when": "작업이 끝난 뒤 같은 시행착오를 줄일 때",
+      "example": "/retro 이번 작업에서 잘못된 테스트 명령을 세 번 실행했어. 다음번에는 올바른 명령을 찾도록 무엇을 고치면 좋을까?",
+      "result": "작업 기록에 근거한 개선 후보와 반영할 항목.",
+      "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/retro/SKILL.md",
+      "related": [],
+      "keywords": []
+    }
+  ],
+  "scenarios": [
+    {
+      "title": "새 기능 개발",
+      "steps": [
+        {
+          "id": "grill-with-docs",
+          "note": "기존 코드와 문서를 보고 사용자가 기대하는 동작을 정합니다."
+        },
+        {
+          "id": "to-spec",
+          "note": "합의한 동작과 예외 조건을 명세로 남깁니다."
+        },
+        {
+          "id": "implement",
+          "note": "앞 단계의 명세를 바탕으로 기능을 구현하고 변경한 코드를 리뷰에 넘깁니다."
+        },
+        {
+          "id": "code-review",
+          "note": "완성한 기능이 명세와 저장소 규칙에 맞는지 확인합니다."
+        }
+      ]
+    },
+    {
+      "title": "버그 조사와 수정",
+      "steps": [
+        {
+          "id": "triage",
+          "note": "기대했던 결과와 실제 결과를 비교하고 빠진 재현 정보를 모읍니다."
+        },
+        {
+          "id": "diagnosing-bugs",
+          "note": "문제를 반복해서 재현하고 어떤 조건에서 발생하는지 좁힙니다."
+        },
+        {
+          "id": "tdd",
+          "note": "기대 동작을 테스트로 작성해 실패를 확인하고, 수정 후 다시 실행합니다."
+        }
+      ]
+    },
+    {
+      "title": "기존 코드 구조 개선",
+      "steps": [
+        {
+          "id": "improve-codebase-architecture",
+          "note": "작은 변경에도 여러 곳을 함께 고쳐야 하는 부분을 찾습니다."
+        },
+        {
+          "id": "codebase-design",
+          "note": "선택한 모듈의 책임과 호출자가 사용할 인터페이스를 정합니다."
+        },
+        {
+          "id": "implement",
+          "note": "합의한 설계에 맞춰 코드와 호출부를 수정합니다."
+        },
+        {
+          "id": "code-review",
+          "note": "구조를 바꾼 뒤에도 기존 호출자가 같은 결과를 받는지 검토합니다."
+        }
+      ]
+    },
+    {
+      "title": "프로젝트 인수인계",
+      "steps": [
+        {
+          "id": "to-questionnaire",
+          "note": "후임자가 확인해야 할 실행 방법, 미해결 문제, 주요 결정의 이유를 질문으로 정리합니다."
+        },
+        {
+          "id": "handoff",
+          "note": "답변과 작업 기록을 바탕으로 현재 상태와 다음에 할 일을 남깁니다."
+        },
+        {
+          "id": "teach",
+          "note": "인계를 받은 사람이 실제 코드에서 주요 흐름을 직접 따라가며 익힙니다."
+        }
+      ]
+    },
+    {
+      "title": "썸네일 편집 기능 개발",
+      "steps": [
+        {
+          "id": "grill-with-docs",
+          "note": "기존 편집기에서 무엇이 불편한지 설명하고, 썸네일에 넣을 도형의 이름과 동작을 합의했습니다."
+        },
+        {
+          "id": "prototype",
+          "note": "질문을 이어가는 동안 다른 에이전트가 시안 세 가지를 만들었습니다. Matt는 얼굴과 그림을 함께 볼 수 있는 시안을 골랐습니다."
+        },
+        {
+          "id": "to-spec",
+          "note": "선택한 시안과 구현 결정을 명세에 담고 작업 범위를 정했습니다."
+        },
+        {
+          "id": "to-tickets",
+          "note": "명세를 아홉 개의 하위 이슈로 나눴습니다."
+        },
+        {
+          "id": "implement-spec",
+          "note": "독립적인 티켓을 병렬로 구현하고 변경분을 자동 리뷰했습니다."
+        },
+        {
+          "id": "retro",
+          "note": "Matt가 PR을 직접 검토한 뒤, 세션 기록과 리뷰 댓글을 모아 린트 규칙과 문서를 개선했습니다."
+        }
+      ],
+      "source": "https://www.aihero.dev/watch-me-ship-a-21-000-line-feature-with-mattpocock-skills~ez95n"
+    }
+  ]
+}
