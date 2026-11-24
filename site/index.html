@@ -48,9 +48,11 @@ main label { display: block; font-weight: 600; margin-block-end: .35rem; }
 h2 { margin: 2.3rem 0 .6rem; }
 .field-links { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 2rem; }
 .field-links a { padding: .55rem .8rem; background: var(--control-bg); border-radius: var(--radius-button); text-decoration: none; font-size: .875rem; }
-.field-links a:focus-visible, .field-links a:active { background: var(--control-hover); }
+.field-links a[aria-current="true"] { background: var(--accent-fill); color: var(--on-accent); }
+.field-links a:not([aria-current="true"]):is(:focus-visible, :active) { background: var(--control-hover); }
 @media (hover: hover) {
   .field-links a:hover { background: var(--control-hover); }
+  .field-links a[aria-current="true"]:hover { background: var(--accent-fill); }
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .field-links a { transition: background-color 140ms ease-out, transform 140ms ease-out; }
@@ -124,7 +126,7 @@ footer { margin-top: 3rem; color: var(--secondary); font-size: .8125rem; }
   </svg>
 </div>
 <section id="collections"><h2>분야별 사전 <span class="heading-en" lang="en" aria-hidden="true">collections by field</span></h2>
-<nav class="field-links" aria-label="분야 바로가기"><!--FIELD_LINKS--></nav>
+<nav class="field-links" aria-label="사전 분야 선택"><a href="#collections" aria-current="true">전체</a><!--FIELD_LINKS--></nav>
 <div class="fields"><!--COLLECTIONS--></div></section>
 <section id="results" hidden><h2 aria-live="polite"><span id="count"></span><span class="heading-en" lang="en" aria-hidden="true">search results</span></h2><div id="matches"></div></section></main>
 <footer><span>commeng.run / 스킬 사전</span><a href="https://github.com/dotoridot/skill-dictionary#수록-분야와-선정-근거">사전 선정 기준</a></footer>
@@ -132,6 +134,31 @@ footer { margin-top: 3rem; color: var(--secondary); font-size: .8125rem; }
 <script>
 const catalogs = JSON.parse(document.querySelector('#data').textContent);
 const query = document.querySelector('#query');
+const fieldLinks = document.querySelector('.field-links');
+const fields = [...document.querySelectorAll('.fields > .field')];
+
+function showField() {
+  const selected = fields.find(field => '#' + field.id === location.hash);
+  for (const field of fields) field.hidden = Boolean(selected && field !== selected);
+  for (const link of fieldLinks.querySelectorAll('a')) {
+    if (link.hash === (selected ? location.hash : '#collections')) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
+  }
+}
+
+fieldLinks.addEventListener('click', event => {
+  const link = event.target.closest('a');
+  if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (location.hash !== link.hash) {
+    try { history.pushState(null, '', link.hash); } catch { return; }
+  }
+  event.preventDefault();
+  showField();
+});
+window.addEventListener('hashchange', showField);
+window.addEventListener('pageshow', showField);
+showField();
+
 function search() {
   const term = normalizeSearch(query.value);
   const results = document.querySelector('#results');
