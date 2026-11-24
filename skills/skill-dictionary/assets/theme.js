@@ -26,14 +26,16 @@
   document.addEventListener("click", event => {
     if (event.target.id !== "query" || !event.detail) return;
     if (matchMedia("(prefers-reduced-motion: reduce), (forced-colors: active)").matches) return;
-    const light = document.querySelector(".search-light rect");
-    for (const previous of light.getAnimations()) previous.cancel();
-    light.animate([
-      { strokeDashoffset: "9", opacity: 0 },
-      { opacity: 1, offset: .05 },
-      { opacity: 1, offset: .88 },
-      { strokeDashoffset: "-91", opacity: 0 }
-    ], { duration: 850, easing: "linear" });
+    const sweep = event.target.parentElement.querySelector(".search-sweep");
+    const { width, height } = event.target.getBoundingClientRect();
+    const duration = Math.min(1600, Math.max(950, (width + height) * 1.7));
+    for (const previous of sweep.getAnimations()) previous.cancel();
+    sweep.animate([
+      { strokeDashoffset: "0", opacity: 0 },
+      { offset: .12, opacity: 1 },
+      { offset: .78, opacity: 1 },
+      { strokeDashoffset: "100", opacity: 0 }
+    ], { duration, easing: "cubic-bezier(.32,.1,.32,1)" });
   });
   window.addEventListener("pageshow", restore);
   window.addEventListener("storage", event => { if (event.key === key || event.key === null) restore(); });

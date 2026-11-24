@@ -83,14 +83,13 @@
   width: calc(100% - 2px);
   height: calc(100% - 2px);
   rx: var(--radius-control);
-  fill: none;
-  stroke-width: 2.5px;
-  stroke-linecap: round;
-  stroke-dasharray: 9 91;
-  filter: drop-shadow(0 0 1.5px currentColor);
-  color: var(--paper);
-  opacity: 0;
 }
+.search-sweep { opacity: 0; }
+/* All four strokes share a leading edge and follow the same rounded corners. */
+.sweep-halo { stroke-width: 4px; stroke-dasharray: 22 78; opacity: .28; filter: blur(2.2px); }
+.sweep-tail { stroke-width: 2px; stroke-dasharray: 15 85; opacity: .32; filter: blur(.9px); }
+.sweep-body { stroke-width: 1.8px; stroke-dasharray: 8 92; opacity: .62; filter: blur(.45px); }
+.sweep-tip { stroke-width: 1.7px; stroke-dasharray: 3 97; }
 .search-field input:not(:focus) + .search-light { visibility: hidden; }
 @media (prefers-reduced-motion: reduce), (forced-colors: active) {
   .search-light { display: none; }

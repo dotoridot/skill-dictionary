@@ -157,7 +157,12 @@ button, summary { cursor: pointer; }
       <stop offset=".66" stop-color="#46bceb"/><stop offset=".82" stop-color="#7d80ef"/>
       <stop offset="1" stop-color="#cf70e9"/>
     </linearGradient></defs>
-    <rect pathLength="100" stroke="url(#search-spectrum)"/>
+    <g class="search-sweep" fill="none" stroke="url(#search-spectrum)" stroke-linecap="round">
+      <rect class="sweep-halo" pathLength="100"/>
+      <rect class="sweep-tail" pathLength="100"/>
+      <rect class="sweep-body" pathLength="100"/>
+      <rect class="sweep-tip" pathLength="100"/>
+    </g>
   </svg>
 </div>
 <div class="filters" id="filters" role="group" aria-label="목적별 필터"></div>
