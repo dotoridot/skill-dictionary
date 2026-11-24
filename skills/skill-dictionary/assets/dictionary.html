@@ -112,7 +112,7 @@ button, summary { cursor: pointer; }
 #detail { min-width: 0; padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid var(--rule); border-radius: var(--radius-panel); background: var(--paper); }
 #detail section, #detail details { margin-top: 1.2rem; }
 #detail p, #detail pre, .scenario li { max-inline-size: 72ch; white-space: pre-wrap; }
-#detail pre { white-space: pre-wrap; margin: .5rem 0; padding: .8rem; background: var(--code-bg); border-inline-start: 2px solid var(--input-border); font: .9rem/1.65 var(--font-mono), var(--font-body); overflow-wrap: anywhere; }
+#detail pre { margin: .5rem 0; padding: .8rem; background: var(--code-bg); border-inline-start: 2px solid var(--input-border); font: .9rem/1.65 var(--font-mono), var(--font-body); overflow-wrap: anywhere; }
 #detail summary { cursor: pointer; font-weight: 550; padding-block: .4rem; }
 #detail details p, #detail details a { margin-block-start: .5rem; }
 .detail-head { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: .5rem; margin-bottom: .4rem; }
@@ -329,7 +329,7 @@ function openItem(id, focus, update, trigger) {
       prompt = `다음 링크에서 ${item.name}의 원문을 읽고, 스킬을 설치하지 않고 이 요청에 적용해 줘. 필요한 파일이나 도구가 없으면 알려줘.\n${item.source}\n\n${request}`;
     }
     element("h3", item.source ? "설치 없이 사용하기" : "이렇게 요청해 보세요", example, null, item.source ? "try without installing" : "example prompt");
-    if (item.source) element("p", "프롬프트를 복사해 GitHub 링크를 열 수 있는 에이전트에 붙여넣으세요.", example);
+    if (item.source) element("p", "프롬프트를 복사해 원문 링크를 열 수 있는 에이전트에 붙여넣으세요.", example);
     element("pre", prompt, example);
     const controls = element("div", null, example, "copy-line");
     const copy = button(item.source ? "프롬프트 복사" : "예시 복사", controls, () => copyExample(prompt, status, copy), "small");
