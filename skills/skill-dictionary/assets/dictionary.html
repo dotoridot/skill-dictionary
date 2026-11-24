@@ -214,9 +214,6 @@ function itemLink(id, parent) {
     openItem(id, true, true, link);
   });
 }
-function normalize(value) {
-  return value.normalize("NFKC").toLowerCase().replace(/[$/_-]/g, " ");
-}
 function saveView(id, push) {
   const state = { query: query.value, category, scenario: scenarioLinks.indexOf(opener) };
   const fragment = id ? "#" + encodeURIComponent(id) : "";
@@ -249,12 +246,18 @@ function closeItem(focus, update) {
   }
 }
 function filter() {
-  const terms = normalize(query.value).trim().split(/\s+/).filter(Boolean);
-  let count = 0;
+  const term = normalizeSearch(query.value);
+  const ranked = [];
   for (const row of rows.values()) {
-    row.li.hidden = Boolean(category && row.item.category !== category) || !terms.every(term => row.index.includes(term));
-    if (!row.li.hidden) count++;
+    const score = searchScore(row.item, term);
+    row.li.hidden = score < 0 || Boolean(category && row.item.category !== category);
+    ranked.push({ row, score });
   }
+  const list = byId("rows");
+  ranked.sort((a, b) => b.score - a.score).forEach(({ row }, position) => {
+    if (list.children[position] !== row.li) list.insertBefore(row.li, list.children[position]);
+  });
+  const count = ranked.filter(({ row }) => !row.li.hidden).length;
   for (const chip of byId("filters").children) chip.setAttribute("aria-pressed", String((chip.dataset.category ?? null) === category));
   byId("count").textContent = count + "개";
   byId("empty").hidden = count !== 0;
@@ -363,8 +366,7 @@ for (const item of data.items) {
   element("code", item.name, trigger);
   element("span", item.summary, trigger);
   element("small", item.category, trigger);
-  const index = normalize([item.name, item.summary, item.category, item.when, ...(item.keywords || [])].join(" "));
-  rows.set(item.id, { li, trigger, index, item });
+  rows.set(item.id, { li, trigger, item });
 }
 for (const scenario of data.scenarios || []) {
   const sec = byId("scenarios");

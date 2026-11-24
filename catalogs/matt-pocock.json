@@ -42,7 +42,10 @@
       "related": [
         "tdd"
       ],
-      "keywords": [],
+      "keywords": [
+        "요구 분석",
+        "기획 검토"
+      ],
       "comparison": "tdd — 기대 동작이 정해져 테스트부터 시작할 때."
     },
     {
@@ -57,7 +60,11 @@
       "related": [
         "to-questionnaire"
       ],
-      "keywords": [],
+      "keywords": [
+        "기획",
+        "계획 검토",
+        "설계 검토"
+      ],
       "comparison": "to-questionnaire — 고객이나 담당자만 답할 수 있는 질문을 모을 때."
     },
     {
@@ -70,7 +77,10 @@
       "result": "현재 결정할 질문과 추천 답안. 답변을 반영해 다음 질문을 이어갑니다.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/grilling/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "요구사항 질문",
+        "인터뷰"
+      ]
     },
     {
       "id": "domain-modeling",
@@ -82,7 +92,10 @@
       "result": "팀과 코드에서 함께 사용할 용어, 필요한 정의와 설계 기록.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/domain-modeling/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "용어 정리",
+        "도메인 모델링"
+      ]
     },
     {
       "id": "to-spec",
@@ -94,7 +107,11 @@
       "result": "합의한 조건과 범위를 담아 프로젝트의 이슈 관리 방식에 맞춘 명세.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/to-spec/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "문서화",
+        "명세서",
+        "요구사항 정리"
+      ]
     },
     {
       "id": "to-questionnaire",
@@ -121,7 +138,11 @@
       "result": "남은 결정과 선후 관계를 보여주는 이슈 지도.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/wayfinder/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "작업 계획",
+        "의사결정 설계",
+        "기획"
+      ]
     },
     {
       "id": "prototype",
@@ -133,7 +154,11 @@
       "result": "설계 질문을 직접 시험할 수 있는 임시 시안.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/prototype/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "시제품",
+        "프로토타입",
+        "화면 설계"
+      ]
     },
     {
       "id": "improve-codebase-architecture",
@@ -147,7 +172,11 @@
       "related": [
         "codebase-design"
       ],
-      "keywords": [],
+      "keywords": [
+        "아키텍처 검토",
+        "구조 개선",
+        "리팩터링"
+      ],
       "comparison": "codebase-design — 한 모듈의 책임과 인터페이스를 정할 때."
     },
     {
@@ -162,7 +191,10 @@
       "related": [
         "improve-codebase-architecture"
       ],
-      "keywords": [],
+      "keywords": [
+        "아키텍처",
+        "구조 설계"
+      ],
       "comparison": "improve-codebase-architecture — 기존 코드에서 손볼 가치가 큰 곳을 찾을 때."
     },
     {
@@ -177,7 +209,13 @@
       "related": [
         "research"
       ],
-      "keywords": [],
+      "keywords": [
+        "디버깅",
+        "debugging",
+        "원인 조사",
+        "장애 분석",
+        "버그 추적"
+      ],
       "comparison": "research — 플랫폼이 보장하는 동작을 공식 자료에서 확인할 때."
     },
     {
@@ -192,7 +230,10 @@
       "related": [
         "diagnosing-bugs"
       ],
-      "keywords": [],
+      "keywords": [
+        "자료 조사",
+        "공식 문서 검색"
+      ],
       "comparison": "diagnosing-bugs — 우리 코드에서 기대 결과가 나오지 않는 이유를 좁힐 때."
     },
     {
@@ -205,7 +246,10 @@
       "result": "분류한 이슈, 더 필요한 정보와 구현자가 이어받을 설명.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/triage/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "버그 분류",
+        "이슈 분류"
+      ]
     },
     {
       "id": "to-tickets",
@@ -217,7 +261,11 @@
       "result": "각각 검증할 수 있는 티켓과 티켓 사이의 선후 관계.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/to-tickets/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "구현 계획",
+        "작업 분해",
+        "이슈 분할"
+      ]
     },
     {
       "id": "implement",
@@ -246,7 +294,10 @@
       "related": [
         "implement"
       ],
-      "keywords": [],
+      "keywords": [
+        "구현 계획",
+        "작업 순서"
+      ],
       "comparison": "implement — 티켓 하나를 구현하고 검토할 때."
     },
     {
@@ -261,7 +312,12 @@
       "related": [
         "grill-with-docs"
       ],
-      "keywords": [],
+      "keywords": [
+        "시험",
+        "테스트",
+        "테스트 주도 개발",
+        "test"
+      ],
       "comparison": "grill-with-docs — 코드와 문서를 보며 요구사항을 맞출 때."
     },
     {
@@ -276,7 +332,10 @@
       "related": [],
       "keywords": [
         "리뷰",
-        "코드 리뷰"
+        "코드 리뷰",
+        "코드 검토",
+        "코드 검사",
+        "review"
       ]
     },
     {
@@ -289,7 +348,11 @@
       "result": "리뷰어가 어떤 동작이 바뀌었는지 판단할 PR 본문.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/pr/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "풀 리퀘스트",
+        "PR 설명",
+        "병합 요청"
+      ]
     },
     {
       "id": "wizard",
@@ -313,7 +376,10 @@
       "result": "현재 작업 상태와 근거, 다음 행동을 담은 인계 문서.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/handoff/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "인수인계",
+        "작업 인계"
+      ]
     },
     {
       "id": "teach",
@@ -349,7 +415,10 @@
       "result": "에이전트가 언제 어떤 절차와 자료를 써야 하는지 드러나는 지침.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/writing-for-agents/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "문서화",
+        "에이전트 지침"
+      ]
     },
     {
       "id": "retro",
@@ -361,7 +430,10 @@
       "result": "작업 기록에 근거한 개선 후보와 반영할 항목.",
       "source": "https://github.com/mattpocock/skills/blob/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/retro/SKILL.md",
       "related": [],
-      "keywords": []
+      "keywords": [
+        "회고",
+        "작업 돌아보기"
+      ]
     }
   ],
   "scenarios": [

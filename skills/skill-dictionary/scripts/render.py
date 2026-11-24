@@ -97,9 +97,10 @@ def style_document(page):
     licenses = "\n".join(p.read_text(encoding="utf-8") for p in sorted((ASSETS / "fonts").glob("OFL-*.txt")))
     tokens = (ASSETS / "tokens.css").read_text(encoding="utf-8")
     theme = (ASSETS / "theme.js").read_text(encoding="utf-8")
+    search = (ASSETS / "search.js").read_text(encoding="utf-8")
     icon = base64.b64encode((ASSETS / "favicon.png").read_bytes()).decode("ascii")
     favicon = f'<link rel="icon" type="image/png" href="data:image/png;base64,{icon}">'
-    head = f"{favicon}\n<style>/*{licenses}*/\n{fonts}\n{tokens}</style>\n<script>{theme}</script>"
+    head = f"{favicon}\n<style>/*{licenses}*/\n{fonts}\n{tokens}</style>\n<script>{theme}</script>\n<script>{search}</script>"
     return page.replace("<!--DOCPILOT_HEAD-->", head, 1)
 
 

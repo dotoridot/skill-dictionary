@@ -124,33 +124,33 @@ footer { margin-top: 3rem; color: var(--secondary); font-size: .8125rem; }
 <script>
 const catalogs = JSON.parse(document.querySelector('#data').textContent);
 const query = document.querySelector('#query');
-function normalize(value) {
-  return value.normalize("NFKC").toLowerCase().replace(/[$/_-]/g, " ");
-}
 function search() {
-  const words = normalize(query.value).trim().split(/\s+/).filter(Boolean);
+  const term = normalizeSearch(query.value);
   const results = document.querySelector('#results');
-  document.querySelector('#collections').hidden = words.length > 0;
-  results.hidden = words.length === 0;
+  document.querySelector('#collections').hidden = term.length > 0;
+  results.hidden = term.length === 0;
   const matches = document.querySelector('#matches');
   matches.replaceChildren();
-  if (!words.length) return;
+  if (!term.length) return;
+  const ranked = [];
   for (const group of catalogs) {
     for (const item of group.items) {
-      const haystack = normalize([group.title, item.name, item.summary, item.category, item.when, ...(item.keywords || [])].join(' '));
-      if (!words.every(word => haystack.includes(word))) continue;
-      const link = document.createElement('a');
-      link.className = 'match';
-      link.href = group.id + '/index.html#' + encodeURIComponent(item.id);
-      const text = document.createElement('span');
-      const name = document.createElement('strong');
-      name.textContent = item.name;
-      const summary = document.createElement('small');
-      summary.textContent = group.title + ' / ' + item.summary;
-      text.append(name, summary);
-      link.append(text);
-      matches.append(link);
+      const score = searchScore(item, term, group.title);
+      if (score >= 0) ranked.push({ group, item, score });
     }
+  }
+  for (const { group, item } of ranked.sort((a, b) => b.score - a.score)) {
+    const link = document.createElement('a');
+    link.className = 'match';
+    link.href = group.id + '/index.html#' + encodeURIComponent(item.id);
+    const text = document.createElement('span');
+    const name = document.createElement('strong');
+    name.textContent = item.name;
+    const summary = document.createElement('small');
+    summary.textContent = group.title + ' / ' + item.summary;
+    text.append(name, summary);
+    link.append(text);
+    matches.append(link);
   }
   document.querySelector('#count').textContent = matches.childElementCount ? '검색 결과 ' + matches.childElementCount + '개' : '검색 결과가 없습니다. 다른 이름이나 목적으로 찾아보세요.';
 }

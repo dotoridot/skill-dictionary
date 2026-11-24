@@ -22,7 +22,9 @@
         "인터페이스",
         "모듈 경계",
         "데이터 소유권",
-        "동시성"
+        "동시성",
+        "구현 계획",
+        "아키텍처 설계"
       ],
       "name": "architect",
       "summary": "구조와 책임부터 정하기",
@@ -144,7 +146,9 @@
         "증거 수집",
         "검증 스킬",
         "반복 검사",
-        "실행 절차"
+        "실행 절차",
+        "시험 자동화",
+        "테스트 자동화"
       ],
       "name": "create-verification-skill",
       "summary": "실제 사용 경로를 검증하는 스킬 만들기",
@@ -168,7 +172,10 @@
         "불확실성",
         "작업 분해",
         "의존 관계",
-        "완료 조건"
+        "완료 조건",
+        "작업 계획",
+        "기획",
+        "절차 설계"
       ],
       "name": "figure-it-out",
       "summary": "맞는 절차가 없는 큰 작업 설계",
@@ -219,7 +226,9 @@
         "반증",
         "출시 전 확인",
         "동시성 결함",
-        "호환성 검토"
+        "호환성 검토",
+        "코드 리뷰",
+        "코드 검토"
       ],
       "name": "interrogate",
       "summary": "여러 관점으로 놓친 문제 찾기",
@@ -456,7 +465,9 @@
         "설계 기록",
         "PR 설명",
         "사용 절차",
-        "문서 구조"
+        "문서 구조",
+        "문서화",
+        "기술 글쓰기"
       ],
       "name": "technical-writing",
       "summary": "읽고 행동할 수 있는 기술 문서",
@@ -690,7 +701,11 @@
         "장애원인",
         "중복이벤트",
         "인과관계",
-        "땜질"
+        "땜질",
+        "디버깅",
+        "debugging",
+        "원인 조사",
+        "장애 분석"
       ],
       "name": "principle-fix-root-causes",
       "summary": "증상을 재현하고 발생 원인 수정",
@@ -1038,7 +1053,10 @@
         "내부구현",
         "모킹",
         "결과단언",
-        "리팩터링테스트"
+        "리팩터링테스트",
+        "시험",
+        "행동 검증",
+        "test"
       ],
       "name": "principle-test-behavior-not-implementation",
       "summary": "사용하는 쪽의 결과로 테스트하기",
@@ -1080,7 +1098,10 @@
       "related": [
         "principle-explain-the-number"
       ],
-      "keywords": [],
+      "keywords": [
+        "성능 측정",
+        "벤치마크 리뷰"
+      ],
       "source": "https://github.com/cursor/plugins/blob/005d8f6e8ec057b738adcd08a08b30db0478402d/pstack/skills/benchmark-checklist/SKILL.md"
     },
     {
@@ -1248,7 +1269,12 @@
       "related": [
         "principle-test-behavior-not-implementation"
       ],
-      "keywords": [],
+      "keywords": [
+        "시험",
+        "테스트",
+        "테스트 주도 개발",
+        "test"
+      ],
       "source": "https://github.com/cursor/plugins/blob/005d8f6e8ec057b738adcd08a08b30db0478402d/pstack/skills/tdd/SKILL.md"
     },
     {
