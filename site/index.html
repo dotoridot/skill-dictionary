@@ -46,7 +46,7 @@ h1 { margin: clamp(2.5rem, 7vw, 5rem) 0 .55rem; }
 main p { margin: 0 0 2rem; color: var(--secondary); max-width: 72ch; }
 main label { display: block; font-weight: 600; margin-block-end: .35rem; }
 h2 { margin: 2.3rem 0 .6rem; }
-.field-links { display: flex; flex-wrap: wrap; gap: .25rem .5rem; margin: 1rem 0 2rem; }
+.field-links { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 2rem; }
 .field-links a { padding: .55rem .8rem; background: var(--control-bg); border-radius: var(--radius-button); text-decoration: none; font-size: .875rem; }
 .field-links a:focus-visible, .field-links a:active { background: var(--control-hover); }
 @media (hover: hover) {
@@ -57,22 +57,33 @@ h2 { margin: 2.3rem 0 .6rem; }
   .field-links a:hover { transform: translateY(-1px); }
   .field-links a:active { transform: none; }
 }
-.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 2rem 2.5rem; }
+.fields { display: grid; gap: clamp(2rem, 5vw, 3rem); }
+.field-collections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: .75rem 1rem;
+}
 .field { min-width: 0; scroll-margin-top: 1rem; }
 .field h3 { margin: 0 0 .65rem; font-size: 1.125rem; }
 #count { font-variant-numeric: tabular-nums; }
 .collection, .match {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  border-top: 1px solid var(--rule);
   padding: 1.15rem .5rem;
   color: var(--ink);
   text-decoration: none;
 }
-.collection > span, .match > span { min-width: 0; }
-.collection:last-child, .match:last-child { border-bottom: 1px solid var(--rule); }
+.collection {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-content: start;
+  align-items: baseline;
+  gap: .35rem .75rem;
+  padding: 1rem;
+  background: var(--paper);
+  border-radius: var(--radius-panel);
+}
+.collection small { grid-column: 1 / -1; }
+.match { display: block; border-top: 1px solid var(--rule); }
+.match:last-child { border-bottom: 1px solid var(--rule); }
 .collection strong { font: 600 1.2rem/1.4 var(--font-heading); }
 .collection b { font-size: .875rem; font-weight: 550; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .collection small, .match small { display: block; margin-top: .25rem; color: var(--secondary); font-size: .9375rem; }
@@ -83,7 +94,6 @@ footer { margin-top: 3rem; color: var(--secondary); font-size: .8125rem; }
   .collection:hover strong, .match:hover strong { text-decoration: underline; }
 }
 @media (max-width: 23rem) {
-  .collection { align-items: start; gap: .5rem; }
   header nav { gap: .6rem; }
 }
 </style>

@@ -47,7 +47,8 @@ def generate(output):
     jumps = []
     sections = []
     for number, (field, collections) in enumerate(sorted(fields.items()), start=1):
-        label = html.escape(field) + english_label(field_names.get(field))
+        label = html.escape(field)
+        heading = label + english_label(field_names.get(field))
         anchor = f"field-{number}"
         jumps.append(f'<a href="#{anchor}">{label}</a>')
         links = []
@@ -57,10 +58,13 @@ def generate(output):
             description = html.escape(collection["description"])
             count = len(collection["items"])
             links.append(
-                f'<a class="collection" href="{slug}/index.html"><span><strong>{title}</strong>'
-                f'<small>{description}</small></span><b>{count}개 ↗</b></a>'
+                f'<a class="collection" href="{slug}/index.html"><strong>{title}</strong>'
+                f'<b>{count}개 ↗</b><small>{description}</small></a>'
             )
-        sections.append(f'<section class="field" id="{anchor}"><h3>{label}</h3>{"".join(links)}</section>')
+        sections.append(
+            f'<section class="field" id="{anchor}"><h3>{heading}</h3>'
+            f'<div class="field-collections">{"".join(links)}</div></section>'
+        )
     page = (template.replace("<!--FIELD_LINKS-->", "".join(jumps))
             .replace("<!--COLLECTIONS-->", "".join(sections)).replace("/*CATALOGS*/", encoded))
     (output / "index.html").write_text(style_document(page), encoding="utf-8")
