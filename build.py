@@ -3,13 +3,13 @@ import html
 import json
 from pathlib import Path
 import re
-import subprocess
 import tempfile
 import sys
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "public"
-RENDERER = ROOT / "skills/skill-dictionary/scripts/render.py"
+sys.path.insert(0, str(ROOT / "skills/skill-dictionary/scripts"))
+from render import render, style_document
 
 
 def generate(output):
@@ -23,7 +23,7 @@ def generate(output):
         seen.add(slug)
         directory = output / slug
         directory.mkdir(parents=True, exist_ok=True)
-        subprocess.run([sys.executable, RENDERER, path, directory / "index.html"], check=True)
+        (directory / "index.html").write_text(render(data), encoding="utf-8")
         library.append({key: data[key] for key in ("id", "title", "description")} | {
             "items": [{key: item.get(key) for key in ("id", "name", "summary", "category", "when", "keywords")} for item in data["items"]]
         })
@@ -33,7 +33,7 @@ def generate(output):
     encoded = json.dumps(library, ensure_ascii=False).replace("<", r"\u003c")
     links = "".join(f'<a class="collection" href="{d["id"]}/index.html"><span><strong>{html.escape(d["title"])}</strong><small>{html.escape(d["description"])}</small></span><b>{len(d["items"])}개 ↗</b></a>' for d in library)
     page = template.replace("<!--COLLECTIONS-->", links).replace("/*CATALOGS*/", encoded)
-    (output / "index.html").write_text(page, encoding="utf-8")
+    (output / "index.html").write_text(style_document(page), encoding="utf-8")
 
 
 def build():

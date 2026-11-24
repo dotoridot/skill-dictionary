@@ -1,0 +1,66 @@
+/* Docpilot visual roles. Map these to the target project’s tokens. */
+:root {
+  color-scheme: light;
+  --canvas: #f5f5f5;
+  --paper: #fafafa;
+  --subtle: #f1f1f1;
+  --ink: #171717;
+  --secondary: #666666;
+  --rule: #d9d9d9;
+  --selected: #ededed;
+  --control-bg: #ededed;
+  --control-hover: #e5e5e5;
+  --input-bg: #fafafa;
+  --input-border: #888888;
+  --muted: #666666;
+  --accent: #171717;
+  --accent-fill: #171717;
+  --on-accent: #fafafa;
+  --focus: #2563eb;
+  --success: #15803d;
+  --error: #b91c1c;
+  --code-bg: #ededed;
+  --tooltip-bg: #171717;
+  --tooltip-ink: #fafafa;
+  --chart-track: #dedede;
+  --chart-fill: #666666;
+  --radius-control: 7px;
+  --radius-button: 11px;
+  --radius-panel: 11px;
+  --text-caption: .75rem;
+  --text-control: .8125rem;
+  --text-body: .875rem;
+  --text-title: 1.5rem;
+  --font-body: "DM Sans Variable", "Noto Sans KR Variable", sans-serif;
+  --font-heading: "Space Grotesk Variable", "Noto Sans KR Variable", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #121212;
+  --paper: #181818;
+  --subtle: #1e1e1e;
+  --ink: #ebebeb;
+  --secondary: #a3a3a3;
+  --rule: #363636;
+  --selected: #212121;
+  --control-bg: #262626;
+  --control-hover: #303030;
+  --input-bg: #1e1e1e;
+  --input-border: #777777;
+  --muted: #a3a3a3;
+  --accent: #ebebeb;
+  --accent-fill: #ebebeb;
+  --on-accent: #171717;
+  --focus: #60a5fa;
+  --success: #4ade80;
+  --error: #f87171;
+  --code-bg: #1e1e1e;
+  --tooltip-bg: #ebebeb;
+  --tooltip-ink: #171717;
+  --chart-track: #363636;
+  --chart-fill: #b3b3b3;
+}

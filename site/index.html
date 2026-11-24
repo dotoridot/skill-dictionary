@@ -1,21 +1,106 @@
 <!doctype html>
 <html lang="ko">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>스킬 사전 | commeng.run</title>
+<!--DOCPILOT_HEAD-->
 <style>
-:root{color-scheme:light;--ink:#20221e;--muted:#595e56;--line:#d0d4c9;--paper:#f8f8f4;--accent:#315a40;font:16px/1.65 system-ui,sans-serif}
-*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);word-break:keep-all}main,header,footer{max-width:58rem;margin:auto;padding:0 clamp(1.1rem,4vw,3rem)}
-header,footer{display:flex;justify-content:space-between;align-items:center;min-height:4.5rem;font-size:.9rem}header{border-bottom:1px solid var(--line)}a{color:var(--accent);text-underline-offset:.25em}
-h1{font:650 clamp(2.8rem,8vw,5rem)/1.12 system-ui,sans-serif;letter-spacing:-.07em;margin:clamp(3rem,7vw,5rem) 0 .8rem}p{color:var(--muted);margin:0 0 2rem}h2{font-size:1.12rem;margin:2.4rem 0 .7rem}
-input{width:100%;background:white;border:1px solid #878e81;border-radius:.45rem;padding:1rem 1.2rem;font:inherit;color:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.collection,.match{display:flex;gap:1.5rem;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:1.4rem .2rem;text-decoration:none;color:inherit}.collection:last-child,.match:last-child{border-bottom:1px solid var(--line)}.collection strong{font-size:1.4rem}.collection b{white-space:nowrap;color:var(--accent);font-size:.9rem}.collection small,.match small{display:block;color:var(--muted);font-size:.95rem}.match strong{overflow-wrap:anywhere;font-family:ui-monospace,monospace}.match:hover strong,.collection:hover strong{text-decoration:underline}
-footer{margin-top:4rem;color:var(--muted)}[hidden]{display:none!important}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--canvas);
+  font: 1rem/1.65 var(--font-body);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+h1, h2, h3, label, button, summary { font-family: var(--font-heading); }
+h1, h2, h3 { text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.2; letter-spacing: -.025em; font-weight: 650; }
+h2 { font-size: 1.25rem; line-height: 1.4; font-weight: 600; }
+h3 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
+a { color: var(--ink); text-underline-offset: .2em; }
+button { color: var(--ink); cursor: pointer; }
+input[type="search"] {
+  width: 100%;
+  min-height: 3rem;
+  padding: .65rem .9rem;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-control);
+  background: var(--input-bg);
+  color: var(--ink);
+  font: 1rem/1.5 var(--font-body);
+}
+input::placeholder { color: var(--secondary); opacity: 1; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+button:disabled { cursor: default; opacity: .55; }
+[hidden] { display: none !important; }
+[data-theme-toggle] {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 2.5rem;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-button);
+  padding: .4rem .7rem;
+  background: var(--control-bg);
+  font: 550 .8125rem/1.5 var(--font-heading);
+}
+[data-theme-toggle]::before {
+  content: "";
+  width: .85rem;
+  height: .85rem;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  background: linear-gradient(to right, currentColor 50%, transparent 50%);
+}
+[data-theme-toggle][aria-pressed="true"] { background: var(--accent-fill); color: var(--on-accent); border-color: var(--accent-fill); }
+@media (hover: hover) {
+  [data-theme-toggle]:hover { background: var(--control-hover); text-decoration: underline; }
+  [data-theme-toggle][aria-pressed="true"]:hover { background: var(--accent-fill); }
+}
+
+main, header, footer { max-width: 60rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 3rem); }
+header, footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; min-height: 4.5rem; }
+header { border-bottom: 1px solid var(--rule); font: 550 .875rem/1.5 var(--font-heading); }
+header nav { display: flex; align-items: center; flex-wrap: wrap; gap: .9rem; }
+header a { padding-block: .4rem; }
+h1 { margin: clamp(2.5rem, 7vw, 5rem) 0 .55rem; }
+main p { margin: 0 0 2rem; color: var(--secondary); max-width: 72ch; }
+main label { display: block; font-weight: 600; margin-block-end: .35rem; }
+h2 { margin: 2.3rem 0 .6rem; }
+.collection, .match {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  border-top: 1px solid var(--rule);
+  padding: 1.15rem .5rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.collection > span, .match > span { min-width: 0; }
+.collection:last-child, .match:last-child { border-bottom: 1px solid var(--rule); }
+.collection strong { font: 600 1.2rem/1.4 var(--font-heading); }
+.collection b { font-size: .875rem; font-weight: 550; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.collection small, .match small { display: block; margin-top: .25rem; color: var(--secondary); font-size: .9375rem; }
+.match strong { font: 400 1rem/1.5 var(--font-mono); }
+footer { margin-top: 3rem; color: var(--secondary); font-size: .8125rem; }
+@media (hover: hover) {
+  .collection:hover, .match:hover { background: var(--control-hover); }
+  .collection:hover strong, .match:hover strong { text-decoration: underline; }
+}
+@media (max-width: 23rem) {
+  .collection { align-items: start; gap: .5rem; }
+  header nav { gap: .6rem; }
+}
 </style>
-<header><span>commeng.run</span><a href="https://github.com/dotoridot/skill-dictionary">GitHub ↗</a></header>
+</head>
+<body>
+<header><span>commeng.run</span><nav aria-label="사이트 메뉴"><a href="https://github.com/dotoridot/skill-dictionary">GitHub 저장소</a><button type="button" data-theme-toggle aria-label="다크 모드" aria-pressed="false">다크 모드</button></nav></header>
 <main><h1>스킬 사전</h1><p>하고 싶은 일이나 이름으로 에이전트 스킬을 찾아보세요.</p>
-<label class="sr" for="query">전체 사전 검색</label><input type="search" id="query" placeholder="스킬 이름, 목적 또는 검색어" autocomplete="off">
+<label for="query">전체 사전 검색</label><input type="search" id="query" name="q" placeholder="예: 리뷰, 원인 조사, grilling" autocomplete="off">
 <section id="collections"><h2>사전 목록</h2><!--COLLECTIONS--></section>
 <section id="results" hidden><h2 aria-live="polite" id="count"></h2><div id="matches"></div></section></main>
 <footer><span>commeng.run / 스킬 사전</span></footer>
@@ -56,4 +141,5 @@ function search() {
 query.addEventListener('input', search);
 window.addEventListener('pageshow', search);
 </script>
+</body>
 </html>

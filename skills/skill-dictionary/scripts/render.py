@@ -1,6 +1,8 @@
 """Render one portable Korean skill dictionary from an edited JSON catalog."""
 
 import argparse
+import base64
+from bisect import bisect_left
 import html
 import json
 import re
@@ -67,6 +69,38 @@ def validate(catalog):
             required_text(step, "note")
 
 
+ASSETS = Path(__file__).resolve().parent.parent / "assets"
+
+
+def style_document(page):
+    # Embed the supplied font subsets so a downloaded dictionary works offline.
+    def embed_font(match):
+        raw = (ASSETS / match[1]).read_bytes()
+        return "url(data:font/woff2;base64," + base64.b64encode(raw).decode("ascii") + ")"
+
+    points = sorted({ord(char) for char in page})
+
+    def used(rule):
+        ranges = re.search(r"unicode-range:([^} ;]+)", rule)
+        if not ranges:
+            return True
+        for span in ranges[1].split(","):
+            ends = span.removeprefix("U+").split("-")
+            start = bisect_left(points, int(ends[0], 16))
+            if start < len(points) and points[start] <= int(ends[-1], 16):
+                return True
+        return False
+
+    font_css = (ASSETS / "fonts.css").read_text(encoding="utf-8")
+    rules = (rule for rule in re.findall(r"@font-face\s*\{[^}]+\}", font_css) if used(rule))
+    fonts = re.sub(r"url\((fonts/[^)]+)\)", embed_font, "\n".join(rules))
+    licenses = "\n".join(p.read_text(encoding="utf-8") for p in sorted((ASSETS / "fonts").glob("OFL-*.txt")))
+    tokens = (ASSETS / "tokens.css").read_text(encoding="utf-8")
+    theme = (ASSETS / "theme.js").read_text(encoding="utf-8")
+    head = f"<style>/*{licenses}*/\n{fonts}\n{tokens}</style>\n<script>{theme}</script>"
+    return page.replace("<!--DOCPILOT_HEAD-->", head, 1)
+
+
 def render(catalog):
     validate(catalog)
     template = (Path(__file__).resolve().parent.parent / "assets" / "dictionary.html").read_text(encoding="utf-8")
@@ -89,7 +123,7 @@ def render(catalog):
         "DESCRIPTION": html.escape(catalog.get("description", "")),
         "DATA": json.dumps(public_data, ensure_ascii=False, separators=(",", ":")).replace("<", r"\u003c"),
     }
-    return re.sub(r"@@(TITLE|DESCRIPTION|DATA)@@", lambda token: replacements[token[1]], template)
+    return style_document(re.sub(r"@@(TITLE|DESCRIPTION|DATA)@@", lambda token: replacements[token[1]], template))
 
 
 def main():
