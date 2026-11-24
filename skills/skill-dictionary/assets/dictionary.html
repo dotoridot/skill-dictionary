@@ -58,8 +58,8 @@ button:disabled { cursor: default; opacity: .55; }
 }
 [data-theme-toggle][aria-pressed="true"] { background: var(--accent-fill); color: var(--on-accent); border-color: var(--accent-fill); }
 @media (hover: hover) {
-  [data-theme-toggle]:hover { background: var(--control-hover); text-decoration: underline; }
-  [data-theme-toggle][aria-pressed="true"]:hover { background: var(--accent-fill); }
+  [data-theme-toggle]:hover { background: var(--control-hover); border-color: var(--secondary); text-decoration: underline; }
+  [data-theme-toggle][aria-pressed="true"]:hover { background: var(--accent-fill); border-color: var(--accent-fill); }
 }
 
 main { max-width: 72rem; margin-inline: auto; padding: 0 clamp(1rem, 5vw, 4rem) 5rem; }
@@ -120,10 +120,13 @@ button, summary { cursor: pointer; }
 .detail-head { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: .5rem; margin-bottom: .4rem; }
 #detail-title { min-width: 0; font-size: clamp(1.15rem, 2vw, 1.5rem); }
 .related, .copy-line { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-top: .45rem; }
+.status[data-state="success"] { color: var(--success); }
+.status[data-state="error"] { color: var(--error); }
 #empty { padding: 1.25rem 0; }
 @media (hover: hover) {
   .filters button:hover, .related a:hover, .small:hover, .row-trigger:hover, .scenario summary:hover { background: var(--control-hover); }
-  .filters [aria-pressed="true"]:hover { background: var(--accent-fill); }
+  .filters button:hover, .related a:hover, .small:hover { border-color: var(--secondary); }
+  .filters [aria-pressed="true"]:hover { background: var(--accent-fill); border-color: var(--accent-fill); }
   .related a:hover, .small:hover, .filters button:hover { text-decoration: underline; }
 }
 @media (min-width: 52rem) {
@@ -245,8 +248,9 @@ async function copyExample(text, status, trigger) {
     let copied = false;
     try { copied = document.execCommand("copy"); } catch { copied = false; }
     finally { box.remove(); trigger.focus(); }
-    if (!copied) { status.textContent = "예시를 선택해 복사해 주세요."; return; }
+    if (!copied) { status.dataset.state = "error"; status.textContent = "예시를 선택해 복사해 주세요."; return; }
   }
+  status.dataset.state = "success";
   status.textContent = "복사했습니다.";
 }
 function openItem(id, focus, update) {
