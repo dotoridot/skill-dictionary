@@ -9,7 +9,7 @@ import sys
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "public"
 sys.path.insert(0, str(ROOT / "skills/skill-dictionary/scripts"))
-from render import render, style_document
+from render import english_label, render, style_document
 
 
 def generate(output):
@@ -35,16 +35,25 @@ def generate(output):
         raise ValueError("No catalogs found")
     template = (ROOT / "site/index.html").read_text(encoding="utf-8")
     encoded = json.dumps(library, ensure_ascii=False).replace("<", r"\u003c")
+    field_names = {
+        "개발 과정과 협업": "development & collaboration",
+        "데이터와 리서치": "data & research",
+        "디자인과 프런트엔드": "design & frontend",
+        "마케팅과 검색 최적화": "marketing & SEO",
+        "문서와 콘텐츠": "documents & content",
+        "영상과 시각화": "video & visualization",
+        "기타 분야": "other fields",
+    }
     jumps = []
     sections = []
     for number, (field, collections) in enumerate(sorted(fields.items()), start=1):
-        label = html.escape(field)
+        label = html.escape(field) + english_label(field_names.get(field))
         anchor = f"field-{number}"
         jumps.append(f'<a href="#{anchor}">{label}</a>')
         links = []
         for collection in collections:
             slug = collection["id"]
-            title = html.escape(collection["title"])
+            title = html.escape(collection["title"]) + english_label(collection.get("titleEn"))
             description = html.escape(collection["description"])
             count = len(collection["items"])
             links.append(

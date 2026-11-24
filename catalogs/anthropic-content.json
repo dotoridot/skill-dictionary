@@ -1,6 +1,7 @@
 {
   "id": "anthropic-content",
   "home": "../",
+  "titleEn": "documents & content",
   "title": "Anthropic 문서와 콘텐츠",
   "field": "문서와 콘텐츠",
   "description": "제안서를 함께 쓰고 Word, PDF, PowerPoint, Excel로 편집하거나 포스터와 움직이는 이미지를 만드는 스킬 11개입니다.",

@@ -105,8 +105,8 @@ footer { margin-top: 3rem; color: var(--secondary); font-size: .8125rem; }
 </head>
 <body>
 <header><span>commeng.run</span><nav aria-label="사이트 메뉴"><a href="https://github.com/dotoridot/skill-dictionary">GitHub 저장소</a><button type="button" data-theme-toggle aria-label="다크 모드" aria-pressed="false">다크 모드</button></nav></header>
-<main><h1>스킬 사전</h1><p>하고 싶은 일이나 이름으로 에이전트 스킬을 찾아보세요.</p>
-<label for="query">전체 사전 검색</label><div class="search-field">
+<main><h1>스킬 사전 <span class="heading-en" lang="en" aria-hidden="true">skills-dictionary</span></h1><p>하고 싶은 일이나 이름으로 에이전트 스킬을 찾아보세요.</p>
+<label for="query">전체 사전 검색 <span class="heading-en" lang="en" aria-hidden="true">search all skills</span></label><div class="search-field">
   <input type="search" id="query" name="q" placeholder="예: 리뷰, 원인 조사, grilling" autocomplete="off">
   <svg class="search-light" aria-hidden="true" focusable="false">
     <defs><linearGradient id="search-spectrum">
@@ -123,10 +123,10 @@ footer { margin-top: 3rem; color: var(--secondary); font-size: .8125rem; }
     </g>
   </svg>
 </div>
-<section id="collections"><h2>분야별 사전</h2>
+<section id="collections"><h2>분야별 사전 <span class="heading-en" lang="en" aria-hidden="true">collections by field</span></h2>
 <nav class="field-links" aria-label="분야 바로가기"><!--FIELD_LINKS--></nav>
 <div class="fields"><!--COLLECTIONS--></div></section>
-<section id="results" hidden><h2 aria-live="polite" id="count"></h2><div id="matches"></div></section></main>
+<section id="results" hidden><h2 aria-live="polite"><span id="count"></span><span class="heading-en" lang="en" aria-hidden="true">search results</span></h2><div id="matches"></div></section></main>
 <footer><span>commeng.run / 스킬 사전</span><a href="https://github.com/dotoridot/skill-dictionary#수록-분야와-선정-근거">사전 선정 기준</a></footer>
 <script type="application/json" id="data">/*CATALOGS*/</script>
 <script>

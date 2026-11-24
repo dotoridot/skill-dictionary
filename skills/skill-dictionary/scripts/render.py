@@ -104,6 +104,12 @@ def style_document(page):
     return page.replace("<!--DOCPILOT_HEAD-->", head, 1)
 
 
+def english_label(text):
+    if not text:
+        return ""
+    return f' <span class="heading-en" lang="en" aria-hidden="true">{html.escape(text)}</span>'
+
+
 def render(catalog):
     validate(catalog)
     template = (Path(__file__).resolve().parent.parent / "assets" / "dictionary.html").read_text(encoding="utf-8")
@@ -123,10 +129,11 @@ def render(catalog):
         public_data["scenarios"].append(public_scenario)
     replacements = {
         "TITLE": html.escape(catalog["title"]),
+        "TITLE_EN": english_label(catalog.get("titleEn")),
         "DESCRIPTION": html.escape(catalog.get("description", "")),
         "DATA": json.dumps(public_data, ensure_ascii=False, separators=(",", ":")).replace("<", r"\u003c"),
     }
-    return style_document(re.sub(r"@@(TITLE|DESCRIPTION|DATA)@@", lambda token: replacements[token[1]], template))
+    return style_document(re.sub(r"@@(TITLE|TITLE_EN|DESCRIPTION|DATA)@@", lambda token: replacements[token[1]], template))
 
 
 def main():

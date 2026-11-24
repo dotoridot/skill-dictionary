@@ -146,8 +146,8 @@ button, summary { cursor: pointer; }
 <body>
 <main>
 <div class="toolbar"><nav id="home-nav" aria-label="사전 탐색" hidden><a href="../">사전 목록</a></nav><button type="button" data-theme-toggle aria-label="다크 모드" aria-pressed="false">다크 모드</button></div>
-<header><h1>@@TITLE@@</h1><p>@@DESCRIPTION@@</p></header>
-<label for="query">스킬 검색</label>
+<header><h1>@@TITLE@@@@TITLE_EN@@</h1><p>@@DESCRIPTION@@</p></header>
+<label for="query">스킬 검색 <span class="heading-en" lang="en" aria-hidden="true">search skills</span></label>
 <div class="search-field">
   <input id="query" name="q" type="search" placeholder="스킬 이름, 작업, 상황으로 검색" autocomplete="off">
   <svg class="search-light" aria-hidden="true" focusable="false">
@@ -167,7 +167,7 @@ button, summary { cursor: pointer; }
 </div>
 <div class="filters" id="filters" role="group" aria-label="목적별 필터"></div>
 <section class="scenarios" id="scenarios" aria-label="사용 시나리오" hidden></section>
-<div class="results-head"><h2>스킬 목록</h2><span class="hint" id="count" aria-live="polite"></span></div>
+<div class="results-head"><h2>스킬 목록 <span class="heading-en" lang="en" aria-hidden="true">skill list</span></h2><span class="hint" id="count" aria-live="polite"></span></div>
 <div id="layout" class="layout">
 <ul id="rows"></ul><p id="empty" hidden>검색 결과가 없습니다. <button type="button" class="small" id="reset">전체 보기</button></p>
 <article id="detail" aria-labelledby="detail-title" hidden></article>
@@ -187,9 +187,17 @@ const detail = byId("detail");
 let category = null;
 let selected = null;
 let opener = null;
-function element(tag, value, parent, className) {
+function element(tag, value, parent, className, english) {
   const el = document.createElement(tag);
   if (value != null) el.textContent = value;
+  if (english) {
+    const translation = document.createElement("span");
+    translation.className = "heading-en";
+    translation.lang = "en";
+    translation.setAttribute("aria-hidden", "true");
+    translation.textContent = english;
+    el.append(" ", translation);
+  }
   if (className) el.className = className;
   if (parent) parent.append(el);
   return el;
@@ -305,16 +313,16 @@ function openItem(id, focus, update, trigger) {
   title.tabIndex = -1;
   button("닫기", head, () => closeItem(true, true), "small");
   element("p", item.summary, detail);
-  function section(label, value) {
+  function section(label, value, english) {
     if (!value) return;
     const section = element("section", null, detail);
-    element("h3", label, section);
+    element("h3", label, section, null, english);
     element("p", value, section);
   }
-  section("언제 쓰나요?", item.when);
+  section("언제 쓰나요?", item.when, "when to use");
   if (item.example) {
     const example = element("section", null, detail);
-    element("h3", item.exampleSource ? "저자의 사용 예시" : "이렇게 요청해 보세요", example);
+    element("h3", item.exampleSource ? "저자의 사용 예시" : "이렇게 요청해 보세요", example, null, item.exampleSource ? "author example" : "example prompt");
     element("pre", item.example, example);
     const controls = element("div", null, example, "copy-line");
     const copy = button("예시 복사", controls, () => copyExample(item.example, status, copy), "small");
@@ -323,17 +331,17 @@ function openItem(id, focus, update, trigger) {
     if (item.exampleSource) source("사례 출처", item.exampleSource, example);
     else element("span", "사전에서 작성한 예시", example, "hint");
   }
-  section("무엇을 받나요?", item.result);
+  section("무엇을 받나요?", item.result, "what you get");
   if (item.comparison || item.related?.length) {
     const sec = element("section", null, detail);
-    element("h3", "어느 쪽을 쓸까?", sec);
+    element("h3", "어느 쪽을 쓸까?", sec, null, "compare skills");
     if (item.comparison) element("p", item.comparison, sec);
     const links = element("div", null, sec, "related");
     for (const id of item.related || []) itemLink(id, links);
   }
   if (item.avoid || item.source) {
     const more = element("details", null, detail);
-    element("summary", "세부 조건과 원문", more);
+    element("summary", "세부 조건과 원문", more, null, "details & source");
     if (item.avoid) element("p", item.avoid, more);
     if (item.source) source("스킬 원문 보기", item.source, more);
   }
@@ -370,7 +378,7 @@ for (const item of data.items) {
 }
 for (const scenario of data.scenarios || []) {
   const sec = byId("scenarios");
-  if (sec.hidden) { sec.hidden = false; element("h2", "사용 시나리오", sec); }
+  if (sec.hidden) { sec.hidden = false; element("h2", "사용 시나리오", sec, null, "use cases"); }
   const disclosure = element("details", null, sec, "scenario");
   element("summary", scenario.title, disclosure);
   if (scenario.source) source("실제 사례 출처", scenario.source, disclosure);

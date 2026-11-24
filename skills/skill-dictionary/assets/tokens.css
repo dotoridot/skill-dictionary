@@ -94,3 +94,13 @@
 @media (prefers-reduced-motion: reduce), (forced-colors: active) {
   .search-light { display: none; }
 }
+
+.heading-en {
+  display: inline-block;
+  max-width: 100%;
+  margin-inline-start: .25em;
+  color: var(--secondary);
+  font: 400 .75rem/1.4 var(--font-mono);
+  letter-spacing: normal;
+  vertical-align: baseline;
+}
