@@ -148,7 +148,18 @@ button, summary { cursor: pointer; }
 <div class="toolbar"><nav id="home-nav" aria-label="사전 탐색" hidden><a href="../">사전 목록</a></nav><button type="button" data-theme-toggle aria-label="다크 모드" aria-pressed="false">다크 모드</button></div>
 <header><h1>@@TITLE@@</h1><p>@@DESCRIPTION@@</p></header>
 <label for="query">스킬 검색</label>
-<input id="query" name="q" type="search" placeholder="스킬 이름, 작업, 상황으로 검색" autocomplete="off">
+<div class="search-field">
+  <input id="query" name="q" type="search" placeholder="스킬 이름, 작업, 상황으로 검색" autocomplete="off">
+  <svg class="search-light" aria-hidden="true" focusable="false">
+    <defs><linearGradient id="search-spectrum">
+      <stop stop-color="#f25c76"/><stop offset=".18" stop-color="#ff994a"/>
+      <stop offset=".34" stop-color="#e9c84b"/><stop offset=".5" stop-color="#46c98e"/>
+      <stop offset=".66" stop-color="#46bceb"/><stop offset=".82" stop-color="#7d80ef"/>
+      <stop offset="1" stop-color="#cf70e9"/>
+    </linearGradient></defs>
+    <rect pathLength="100" stroke="url(#search-spectrum)"/>
+  </svg>
+</div>
 <div class="filters" id="filters" role="group" aria-label="목적별 필터"></div>
 <section class="scenarios" id="scenarios" aria-label="사용 시나리오" hidden></section>
 <div class="results-head"><h2>스킬 목록</h2><span class="hint" id="count" aria-live="polite"></span></div>

@@ -100,7 +100,18 @@ footer { margin-top: 3rem; color: var(--secondary); font-size: .8125rem; }
 <body>
 <header><span>commeng.run</span><nav aria-label="사이트 메뉴"><a href="https://github.com/dotoridot/skill-dictionary">GitHub 저장소</a><button type="button" data-theme-toggle aria-label="다크 모드" aria-pressed="false">다크 모드</button></nav></header>
 <main><h1>스킬 사전</h1><p>하고 싶은 일이나 이름으로 에이전트 스킬을 찾아보세요.</p>
-<label for="query">전체 사전 검색</label><input type="search" id="query" name="q" placeholder="예: 리뷰, 원인 조사, grilling" autocomplete="off">
+<label for="query">전체 사전 검색</label><div class="search-field">
+  <input type="search" id="query" name="q" placeholder="예: 리뷰, 원인 조사, grilling" autocomplete="off">
+  <svg class="search-light" aria-hidden="true" focusable="false">
+    <defs><linearGradient id="search-spectrum">
+      <stop stop-color="#f25c76"/><stop offset=".18" stop-color="#ff994a"/>
+      <stop offset=".34" stop-color="#e9c84b"/><stop offset=".5" stop-color="#46c98e"/>
+      <stop offset=".66" stop-color="#46bceb"/><stop offset=".82" stop-color="#7d80ef"/>
+      <stop offset="1" stop-color="#cf70e9"/>
+    </linearGradient></defs>
+    <rect pathLength="100" stroke="url(#search-spectrum)"/>
+  </svg>
+</div>
 <section id="collections"><h2>사전 목록</h2><!--COLLECTIONS--></section>
 <section id="results" hidden><h2 aria-live="polite" id="count"></h2><div id="matches"></div></section></main>
 <footer><span>commeng.run / 스킬 사전</span></footer>

@@ -17,6 +17,24 @@
       try { localStorage.setItem(key, root.dataset.theme); } catch { /* Restricted storage keeps this page's choice. */ }
     });
   });
+  document.addEventListener("pointerdown", event => {
+    if (event.target.id === "query" && event.button === 0) event.target.dataset.pointerFocus = "";
+  });
+  document.addEventListener("focusout", event => {
+    if (event.target.id === "query") delete event.target.dataset.pointerFocus;
+  });
+  document.addEventListener("click", event => {
+    if (event.target.id !== "query" || !event.detail) return;
+    if (matchMedia("(prefers-reduced-motion: reduce), (forced-colors: active)").matches) return;
+    const light = document.querySelector(".search-light rect");
+    for (const previous of light.getAnimations()) previous.cancel();
+    light.animate([
+      { strokeDashoffset: "9", opacity: 0 },
+      { opacity: 1, offset: .05 },
+      { opacity: 1, offset: .88 },
+      { strokeDashoffset: "-91", opacity: 0 }
+    ], { duration: 850, easing: "linear" });
+  });
   window.addEventListener("pageshow", restore);
   window.addEventListener("storage", event => { if (event.key === key || event.key === null) restore(); });
 })();
