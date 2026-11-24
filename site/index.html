@@ -23,8 +23,11 @@ footer{margin-top:4rem;color:var(--muted)}[hidden]{display:none!important}.sr{po
 <script>
 const catalogs = JSON.parse(document.querySelector('#data').textContent);
 const query = document.querySelector('#query');
+function normalize(value) {
+  return value.normalize("NFKC").toLowerCase().replace(/[$/_-]/g, " ");
+}
 function search() {
-  const words = query.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+  const words = normalize(query.value).trim().split(/\s+/).filter(Boolean);
   const results = document.querySelector('#results');
   document.querySelector('#collections').hidden = words.length > 0;
   results.hidden = words.length === 0;
@@ -33,7 +36,7 @@ function search() {
   if (!words.length) return;
   for (const group of catalogs) {
     for (const item of group.items) {
-      const haystack = [group.title, item.name, item.summary, item.category, ...(item.keywords || [])].join(' ').toLocaleLowerCase();
+      const haystack = normalize([group.title, item.name, item.summary, item.category, item.when, ...(item.keywords || [])].join(' '));
       if (!words.every(word => haystack.includes(word))) continue;
       const link = document.createElement('a');
       link.className = 'match';

@@ -4,6 +4,7 @@ import argparse
 import html
 import json
 import re
+import unicodedata
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -16,10 +17,16 @@ def required_text(record, key):
 
 
 def check_source(record, key):
-    if record.get(key):
-        url = urlsplit(required_text(record, key))
-        if url.scheme != "https" or not url.hostname or url.username or url.password:
-            raise ValueError(f"{key}: expected a public HTTPS source")
+    if key not in record or record[key] == "":
+        return
+    value = required_text(record, key)
+    if "\\" in value or any(c.isspace() or unicodedata.category(c) in {"Cc", "Cf"} for c in value):
+        raise ValueError(f"{key}: invalid character in URL")
+    url = urlsplit(value)
+    # Reading port checks both its numeric syntax and its range.
+    if (url.port == 0 or url.scheme != "https" or not url.hostname
+            or any(c in url.netloc for c in "@%<>^|")):
+        raise ValueError(f"{key}: expected an HTTPS source without credentials")
 
 
 def validate(catalog):
@@ -63,10 +70,24 @@ def validate(catalog):
 def render(catalog):
     validate(catalog)
     template = (Path(__file__).resolve().parent.parent / "assets" / "dictionary.html").read_text(encoding="utf-8")
+    item_fields = (
+        "id", "name", "summary", "category", "when", "example", "result", "avoid",
+        "comparison", "related", "keywords", "source", "exampleSource",
+    )
+    public_data = {
+        "items": [{key: item[key] for key in item_fields if key in item} for item in catalog["items"]],
+        "scenarios": [],
+    }
+    if catalog.get("home") == "../":
+        public_data["home"] = "../"
+    for scenario in catalog.get("scenarios", []):
+        public_scenario = {key: scenario[key] for key in ("title", "source") if key in scenario}
+        public_scenario["steps"] = [{"id": step["id"], "note": step["note"]} for step in scenario["steps"]]
+        public_data["scenarios"].append(public_scenario)
     replacements = {
         "TITLE": html.escape(catalog["title"]),
         "DESCRIPTION": html.escape(catalog.get("description", "")),
-        "DATA": json.dumps(catalog, ensure_ascii=False, separators=(",", ":")).replace("<", r"\u003c"),
+        "DATA": json.dumps(public_data, ensure_ascii=False, separators=(",", ":")).replace("<", r"\u003c"),
     }
     return re.sub(r"@@(TITLE|DESCRIPTION|DATA)@@", lambda token: replacements[token[1]], template)
 
